@@ -245,8 +245,13 @@ public class ParseAndGenerateMap : EditorWindow
             roomHeight = 15;
 
         // Load Sprites
+        // NOTE: AssetDatabase.LoadAllAssetsAtPath does not guarantee sub-asset order matches
+        // the t_### naming order used when the sprites were sliced, so we look sprites up by
+        // their name-encoded index instead of trusting array position.
         var spriteSheetPath = AssetDatabase.GetAssetPath(spriteSheet);
-        Sprite[] spriteArray = AssetDatabase.LoadAllAssetsAtPath(spriteSheetPath).OfType<Sprite>().ToArray();        
+        Dictionary<int, Sprite> spriteByIndex = AssetDatabase.LoadAllAssetsAtPath(spriteSheetPath)
+            .OfType<Sprite>()
+            .ToDictionary(s => int.Parse(s.name.Substring(EditorUtilityFunctions.spriteSheetIDPrefix.Length)));
 
         // Read in the map data
         int height = mapAsTileIndices.GetLength(1);
@@ -324,7 +329,7 @@ public class ParseAndGenerateMap : EditorWindow
                 GameObject tile = (GameObject)PrefabUtility.InstantiatePrefab(tilePrefab);
                 tile.transform.position = new Vector3(x, y);
                 tile.transform.parent = rooms[x / roomWidth, y / roomHeight];
-                tile.GetComponent<SpriteRenderer>().sprite = spriteArray[typeNum];
+                tile.GetComponent<SpriteRenderer>().sprite = spriteByIndex[typeNum];
             }
         }
 
