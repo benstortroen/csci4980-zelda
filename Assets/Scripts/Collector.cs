@@ -3,6 +3,7 @@ using UnityEngine;
 public class Collector : MonoBehaviour
 {
     private Inventory inventory;
+    public AudioClip rupee_collection_sound_clip;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class Collector : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
+        // Collect Rupee
         if (other.tag == "rupee")
         {
             Debug.Log("Collected rupee!");
@@ -26,6 +28,9 @@ public class Collector : MonoBehaviour
                 inventory.AddRupees(1);
             }
             Destroy(other);
+
+            // Play collect noise
+            AudioSource.PlayClipAtPoint(rupee_collection_sound_clip, transform.position);
         }
     }
 }
