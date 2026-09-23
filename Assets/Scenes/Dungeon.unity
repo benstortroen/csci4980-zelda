@@ -24020,6 +24020,9 @@ GameObject:
   - component: {fileID: 187660468}
   - component: {fileID: 187660467}
   - component: {fileID: 187660471}
+  - component: {fileID: 187660472}
+  - component: {fileID: 187660473}
+  - component: {fileID: 187660474}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -24242,6 +24245,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &187660472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187660466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdfae72c684ae4d019cadfe099aa9ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  rightRoomVector: {x: 16, y: 0, z: 0}
+  leftRoomVector: {x: -16, y: 0, z: 0}
+  upRoomVector: {x: 0, y: 11, z: 0}
+  downRoomVector: {x: 0, y: -11, z: 0}
+  transitionDuration: 2
+--- !u!114 &187660473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187660466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76bc616a35a164d9c8b1a9690d026fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &187660474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187660466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510245cf1f73047b787931385e080338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MessengerComponent
 --- !u!4 &187893483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8719508450894106447, guid: e08f8cd594f874d5ea65a5e290b8b0d9, type: 3}
