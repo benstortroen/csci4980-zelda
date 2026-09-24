@@ -31,10 +31,18 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!moving)
         {
-            Debug.Log("Moving");
+            // Debug.Log("Moving");
             SnapToGrid();
             startPos = (Vector2)transform.position;
-            direction = UnityEngine.Random.Range(0, 4);
+            int new_d;
+            do
+            {
+                new_d = UnityEngine.Random.Range(0, 4);
+                direction = UnityEngine.Random.Range(0, 4);
+            } while (new_d != direction);
+            direction = new_d;
+
+
             distance = UnityEngine.Random.Range(1, 8);
             switch (direction)
             {
@@ -56,11 +64,6 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             float offset = Math.Abs(((Vector2)transform.position - startPos).magnitude);
-            // if (offset >= distance || (offset >= 2 && AlignedToPlayer()))
-            // {
-            //     SnapToGrid();
-            //     moving = false;
-            // }
             if (offset >= distance || (offset >= 2 && AlignedToPlayer()))
             {
                 SnapToGrid();
@@ -71,7 +74,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision");
+        // Debug.Log("Collision");
         moving = false;
     }
 
