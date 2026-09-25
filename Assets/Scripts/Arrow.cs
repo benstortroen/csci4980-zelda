@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour, IItem
 {
-    public int Damage { get; set; } = 1; 
+    public int Damage { get; set; } = 1;
+    public string ItemName { get; set; } = "Arrow";
 
-    public void UseItem(Vector3 position, Vector2 direction){}
+    public void UseItem(Vector3 position, Vector2 direction) { }
 
     [SerializeField] private float move_speed = 5f;
 

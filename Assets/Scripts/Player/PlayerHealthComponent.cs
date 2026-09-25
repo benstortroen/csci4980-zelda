@@ -10,4 +10,12 @@ public class PlayerHealthComponent : HealthComponent
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
+
+    public override void DealDamage(int d)
+    {
+        if (!CheatsController.godMode)
+        {
+            base.DealDamage(d);
+        }
+    }
 }

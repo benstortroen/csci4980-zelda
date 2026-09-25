@@ -18,7 +18,7 @@ public class HealthComponent : MonoBehaviour
         current_hp = current_hp > max_hp ? max_hp : current_hp;
     }
 
-    public void DealDamage(int damage)
+    public virtual void DealDamage(int damage)
     {
         current_hp -= damage;
         if (current_hp <= 0)

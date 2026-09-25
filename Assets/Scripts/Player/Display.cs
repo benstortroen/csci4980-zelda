@@ -6,6 +6,8 @@ public class Display : MonoBehaviour
 {
     public Inventory inventory;
     public HealthComponent health;
+
+    public ItemManager itemManager;
     TextMeshProUGUI text_component;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,8 +24,11 @@ public class Display : MonoBehaviour
         {
             temp_text += "Rupees: ";
             temp_text += inventory.GetRupees().ToString();
-            temp_text += "\n Health: ";
+            temp_text += "     Health: ";
             temp_text += health.GetHealth() + "/" + health.max_hp;
+            temp_text += "\nMain Weapon: " + itemManager.getMainItemName();
+            temp_text += "     Alt Weapon: " + itemManager.getAltItemName();
+
         }
 
         text_component.text = temp_text;

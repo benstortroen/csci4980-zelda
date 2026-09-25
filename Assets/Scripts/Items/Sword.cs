@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 
 public class Sword : MonoBehaviour, IItem
 {
-    
-    public int Damage { get; set; } = 1; 
-    
+    public string ItemName { get; set; } = "Sword";
+    public int Damage { get; set; } = 1;
+
     public void UseItem(Vector3 position, Vector2 direction)
     {
         // enable item
@@ -16,7 +16,7 @@ public class Sword : MonoBehaviour, IItem
 
         // rotate item to face dirction
         RotateItem(direction);
-        
+
         // place sword in facing direction 
         transform.position = position + new Vector3(direction.x, direction.y, 0);
 
@@ -52,7 +52,7 @@ public class Sword : MonoBehaviour, IItem
             rotation = 270;
         }
 
-        transform.rotation = Quaternion.Euler(0, 0 , rotation);
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
 }

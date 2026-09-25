@@ -10,7 +10,7 @@ public class ItemManager : MonoBehaviour
     private GameObject alt_item;
     private GameObject[] alt_items;
     private int alt_index;
-    
+
 
     // Components
     private ArrowKeyMovement arrowKeyMovement;
@@ -35,10 +35,10 @@ public class ItemManager : MonoBehaviour
     }
 
     // use item when key is pressed
-    
+
     void Update()
     {
-        
+
         UpdateDirection();
         HandleInput();
     }
@@ -75,6 +75,16 @@ public class ItemManager : MonoBehaviour
             alt_item = alt_items[alt_index];
             alt_item.SetActive(true);
         }
+    }
+
+    public string getMainItemName()
+    {
+        return main_item.GetComponent<IItem>().ItemName;
+    }
+
+    public string getAltItemName()
+    {
+        return alt_item.GetComponent<IItem>().ItemName;
     }
 
 }

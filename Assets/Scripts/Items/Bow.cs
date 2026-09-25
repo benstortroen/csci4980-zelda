@@ -4,25 +4,42 @@ using UnityEngine;
 
 public class Bow : MonoBehaviour, IItem
 {
-    public int Damage { get; set; } = 1; 
+    public int Damage { get; set; } = 1;
+
+    public string ItemName { get; set; }
+
+    public int ArrowCount = 10;
 
     [SerializeField] private GameObject arrow_prefab;
-    
+
+    public void Start()
+    {
+        ItemName = "Bow (" + ArrowCount + ")";
+    }
+
     public void UseItem(Vector3 position, Vector2 direction)
     {
-        // enable item
-        gameObject.SetActive(true);
+        if (ArrowCount > 0)
+        {
+            // enable item
+            gameObject.SetActive(true);
 
-        // spawn arrow in facing direction
-        Vector3 new_position = position + new Vector3(direction.x, direction.y, 0);
-        GameObject arrow = Instantiate(arrow_prefab, new_position, Quaternion.identity);
+            // spawn arrow in facing direction
+            Vector3 new_position = position + new Vector3(direction.x, direction.y, 0);
+            GameObject arrow = Instantiate(arrow_prefab, new_position, Quaternion.identity);
 
-        arrow.GetComponent<Arrow>().SetDirection(direction);
+            arrow.GetComponent<Arrow>().SetDirection(direction);
 
-        // rotate item to face dirction
-        RotateItem(direction, arrow);
-        
-        
+            // rotate item to face dirction
+            RotateItem(direction, arrow);
+            if (!CheatsController.godMode)
+            {
+                ArrowCount -= 1;
+                ItemName = "Bow (" + ArrowCount + ")";
+            }
+
+        }
+
     }
 
     private void RotateItem(Vector2 direction, GameObject arrow)
@@ -47,7 +64,11 @@ public class Bow : MonoBehaviour, IItem
             rotation = 270;
         }
 
-        arrow.transform.rotation = Quaternion.Euler(0, 0 , rotation);
+        arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
+    public void AddArrows(int a)
+    {
+        ArrowCount += a;
+    }
 }
