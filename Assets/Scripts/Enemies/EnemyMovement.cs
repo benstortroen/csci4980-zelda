@@ -71,6 +71,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    // Inflict damage to player
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Debug.Log("Collision");
@@ -79,8 +80,9 @@ public class EnemyMovement : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            player.GetComponent<Health>().DealDamage(1);
+            player.GetComponent<HealthComponent>().DealDamage(1);
         }
+        
     }
 
     private void SnapToGrid()

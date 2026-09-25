@@ -6,9 +6,8 @@ using UnityEngine.UIElements;
 
 public class Sword : MonoBehaviour, IItem
 {
-    // variables
-    public float Damage { get; set; } = 1f; 
-
+    
+    public int Damage { get; set; } = 1; 
     
     public void UseItem(Vector3 position, Vector2 direction)
     {

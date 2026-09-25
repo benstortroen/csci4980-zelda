@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Display : MonoBehaviour
 {
     public Inventory inventory;
-    public Health health;
+    public HealthComponent health;
     TextMeshProUGUI text_component;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

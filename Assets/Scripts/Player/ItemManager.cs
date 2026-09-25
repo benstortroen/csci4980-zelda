@@ -20,9 +20,11 @@ public class ItemManager : MonoBehaviour
     {
         arrowKeyMovement = gameObject.GetComponent<ArrowKeyMovement>();
 
-        // Instantiate items
+        // Instantiate main item
         main_item = Instantiate(main_item_prefab, Vector3.zero, Quaternion.identity);
         main_item.SetActive(true);
+        // Instantiate alt items    
+        alt_items = new GameObject[alt_items_prefab.Length];
         for (int i = 0; i < alt_items_prefab.Length; i++)
         {
             alt_items[i] = Instantiate(alt_items_prefab[i], Vector3.zero, Quaternion.identity);
