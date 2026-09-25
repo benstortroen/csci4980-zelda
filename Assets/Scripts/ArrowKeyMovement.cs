@@ -1,5 +1,6 @@
 using System;
 using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,8 +9,8 @@ using UnityEngine.UIElements;
 public class ArrowKeyMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-    public float movement_speed = 4;
-    public float adjust_rate = 1f;
+    [SerializeField] private float movement_speed = 4;
+    private Vector2 directionFacing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,11 +23,36 @@ public class ArrowKeyMovement : MonoBehaviour
     {
         Vector2 current_input = GetInput();
         AlignWithAxis(current_input);
-        // Set speed
+        
+        // set player's facing direction
+        if (current_input != Vector2.zero)
+        {
+            directionFacing = current_input;
+        }
+        
+        // Set velocity based on input 
         rb.linearVelocity = current_input * movement_speed;
         
     }
 
+    Vector2 GetInput()
+    {
+        float horizontal_input = Input.GetAxisRaw("Horizontal");
+        float vertical_input = Input.GetAxisRaw("Vertical");
+
+        // Only allow one axis of movement at a time
+        if (horizontal_input != 0f)
+        {
+            vertical_input = 0f;
+        }
+        if (vertical_input != 0f)
+        {
+            horizontal_input = 0f;
+        }
+
+        return new Vector2(horizontal_input, vertical_input);
+    }
+    
     // Snap player to the opposite axis they are moving along
     // if player is moving horizontally, snap to nearest y grid
     // if player is moving vertically, snap to nearest x grid
@@ -67,25 +93,11 @@ public class ArrowKeyMovement : MonoBehaviour
             }
         }
 
-        Debug.Log(temp_pos);
-
         transform.position = temp_pos;
     }
-    Vector2 GetInput()
+
+    public Vector2 GetDirectionFacing()
     {
-        float horizontal_input = Input.GetAxisRaw("Horizontal");
-        float vertical_input = Input.GetAxisRaw("Vertical");
-
-        // Only allow one axis of movement at a time
-        if (horizontal_input != 0f)
-        {
-            vertical_input = 0f;
-        }
-        if (vertical_input != 0f)
-        {
-            horizontal_input = 0f;
-        }
-
-        return new Vector2(horizontal_input, vertical_input);
+        return directionFacing;
     }
 }

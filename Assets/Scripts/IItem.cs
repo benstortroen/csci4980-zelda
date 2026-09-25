@@ -1,36 +1,8 @@
 using UnityEngine;
 
-public class Item
+public interface IItem
 {
-    private float name;
-    private float damage;
-    private Vector2 direction;
+    public float Damage { get; set; }
     
-    public void UseItem()
-    {
-        
-    }
-}
-
-public class ProjectileItem : Item
-{
-    [SerializeField] GameObject projectileGameObject;
-
-
-}
-
-public class Projectile
-{
-    private float speed = 1;
-    private Vector2 direction = Vector2.right;
-
-    public Projectile(Vector2 dir)
-    {
-        direction = dir;
-    }
-
-    void Update()
-    {
-        
-    }
+    public void UseItem(Vector3 position, Vector2 direction);
 }
