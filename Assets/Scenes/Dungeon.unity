@@ -254067,6 +254067,7 @@ GameObject:
   - component: {fileID: 2085827818}
   - component: {fileID: 2085827819}
   - component: {fileID: 2085827820}
+  - component: {fileID: 2085827821}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -254143,7 +254144,7 @@ Transform:
   m_GameObject: {fileID: 2085827812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.1, y: 5.01, z: 0}
+  m_LocalPosition: {x: 38.97, y: 4.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -254189,7 +254190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   movement_speed: 4
-  adjust_rate: 2
 --- !u!61 &2085827817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -254274,6 +254274,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   max_hp: 5
+--- !u!114 &2085827821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085827812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77708fca72c4b4220b5752f3e8391ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  main_item: {fileID: 3157238903016345142, guid: a6ba281842a9f40a89c46fa7c8a62b5f, type: 3}
+  alt_items: []
 --- !u!1001 &2086049099
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -32,5 +32,7 @@ public class Collector : MonoBehaviour
             // Play collect noise
             AudioSource.PlayClipAtPoint(rupee_collection_sound_clip, transform.position);
         }
+
+        // TODO: add pickups for health
     }
 }
