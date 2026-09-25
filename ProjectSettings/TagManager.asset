@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - rupee
+  - item
+  - enemy
   layers:
   - Default
   - TransparentFX

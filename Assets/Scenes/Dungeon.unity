@@ -42480,7 +42480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   inventory: {fileID: 2085827819}
-  health: {fileID: 2085827820}
+  health: {fileID: 2085827822}
 --- !u!114 &339483092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254066,8 +254066,8 @@ GameObject:
   - component: {fileID: 2085827816}
   - component: {fileID: 2085827818}
   - component: {fileID: 2085827819}
-  - component: {fileID: 2085827820}
   - component: {fileID: 2085827821}
+  - component: {fileID: 2085827822}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -254261,19 +254261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8810d22333c594800ab776a266eb2ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &2085827820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085827812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e99e455e8444d55b73c074a3445e7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  max_hp: 5
 --- !u!114 &2085827821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254286,8 +254273,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77708fca72c4b4220b5752f3e8391ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  main_item: {fileID: 3157238903016345142, guid: a6ba281842a9f40a89c46fa7c8a62b5f, type: 3}
-  alt_items: []
+  main_item_prefab: {fileID: 3157238903016345142, guid: a6ba281842a9f40a89c46fa7c8a62b5f, type: 3}
+  alt_items_prefab:
+  - {fileID: 1680387595677256656, guid: 1451b1037f6ac4801a2a29b98105e10e, type: 3}
+--- !u!114 &2085827822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085827812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b98ef24d0a346bea5082ea9811bf79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthComponent
+  max_hp: 5
 --- !u!1001 &2086049099
 PrefabInstance:
   m_ObjectHideFlags: 0
