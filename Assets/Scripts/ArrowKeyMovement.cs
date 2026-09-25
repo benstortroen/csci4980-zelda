@@ -8,6 +8,7 @@ public class ArrowKeyMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     public float movement_speed = 4;
+    public float adjust_rate = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,24 +24,39 @@ public class ArrowKeyMovement : MonoBehaviour
         rb.linearVelocity = current_input * movement_speed;
 
         //Temp version of transform to make editing easier
-        Vector3 currentPos = transform.position;
-
-        // Floor everything to a .5 multiple when within .1
-        if (currentPos.x % 0.5f < 0.1)
-        {
-            float x_dir = current_input.x;
-            currentPos.x += x_dir * (currentPos.x % 0.5f);
-        }
-
-        if (currentPos.y % 0.5f < 0.1)
-        {
-            float y_dir = current_input.y;
-            currentPos.y += y_dir * (currentPos.y % 0.5f);
-        }
-        // Reasign transform
-        transform.position = currentPos;
+        DirectionalCenter(current_input);
     }
 
+    private void DirectionalCenter(Vector2 input)
+    {
+        Vector3 temp_pos = transform.position;
+        if (input.x != 0)
+        {
+            // Debug.Log("Locking");
+            float offset = temp_pos.y % 1f;
+            if (offset <= .5f)
+            {
+                temp_pos.y -= adjust_rate * Time.deltaTime;
+            }
+            else
+            {
+                temp_pos.y += adjust_rate * Time.deltaTime;
+            }
+        }
+        else if (input.y != 0)
+        {
+            float offset = temp_pos.x % 1f;
+            if (offset <= .5f)
+            {
+                temp_pos.x -= adjust_rate * Time.deltaTime;
+            }
+            else
+            {
+                temp_pos.x += adjust_rate * Time.deltaTime;
+            }
+        }
+        transform.position = temp_pos;
+    }
     Vector2 GetInput()
     {
         float horizontal_input = Input.GetAxisRaw("Horizontal");

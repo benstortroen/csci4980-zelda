@@ -42,7 +42,6 @@ public class EnemyMovement : MonoBehaviour
             } while (new_d != direction);
             direction = new_d;
 
-
             distance = UnityEngine.Random.Range(1, 8);
             switch (direction)
             {
@@ -76,6 +75,12 @@ public class EnemyMovement : MonoBehaviour
     {
         // Debug.Log("Collision");
         moving = false;
+        GameObject other = collision.gameObject;
+
+        if (other.tag == "Player")
+        {
+            player.GetComponent<Health>().DealDamage(1);
+        }
     }
 
     private void SnapToGrid()
