@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class EnemyHealthComponent : HealthComponent
 {
+
+    void Start()
+    {
+        max_hp = 3f;
+        current_hp = max_hp;
+    }
     public override void OnDeath()
     {
         gameObject.SetActive(false);

@@ -11,7 +11,7 @@ public class PlayerHealthComponent : HealthComponent
 
     }
 
-    public override void DealDamage(int d)
+    public override void DealDamage(float d)
     {
         if (!CheatsController.godMode)
         {

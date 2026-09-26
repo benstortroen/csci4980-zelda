@@ -80,9 +80,9 @@ public class EnemyMovement : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            player.GetComponent<HealthComponent>().DealDamage(1);
+            player.GetComponent<HealthComponent>().DealDamage(0.5f);
         }
-        
+
     }
 
     private void SnapToGrid()

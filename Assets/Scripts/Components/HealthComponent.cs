@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField] public int max_hp = 5;
-    private int current_hp;
+    [SerializeField] public float max_hp = 5;
+    public float current_hp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,13 +12,13 @@ public class HealthComponent : MonoBehaviour
         current_hp = this.max_hp;
     }
 
-    public void RestoreHealth(int h)
+    public void RestoreHealth(float h)
     {
         current_hp += h;
         current_hp = current_hp > max_hp ? max_hp : current_hp;
     }
 
-    public virtual void DealDamage(int damage)
+    public virtual void DealDamage(float damage)
     {
         current_hp -= damage;
         if (current_hp <= 0)
@@ -33,7 +33,7 @@ public class HealthComponent : MonoBehaviour
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
         return current_hp;
     }
