@@ -42,6 +42,13 @@ public class Collector : MonoBehaviour
             Destroy(other);
         }
 
-        // TODO: add pickups for health
+        if (other.tag == "key")
+        {
+            if (inventory != null)
+            {
+                inventory.AddKeys(1);
+            }
+            Destroy(other);
+        }
     }
 }

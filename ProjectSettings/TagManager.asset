@@ -7,6 +7,9 @@ TagManager:
   - rupee
   - item
   - enemy
+  - heart
+  - key
+  - locked_door
   layers:
   - Default
   - TransparentFX
