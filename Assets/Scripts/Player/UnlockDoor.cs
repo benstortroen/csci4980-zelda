@@ -9,12 +9,6 @@ public class UnlockDoor : MonoBehaviour
         inventory = GetComponent<Inventory>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     //Locked door is literally just a box collider square
     public void OnCollisionEnter2D(Collision2D collision)
