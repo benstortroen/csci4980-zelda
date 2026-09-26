@@ -26,8 +26,8 @@ public class Display : MonoBehaviour
             temp_text += inventory.GetRupees().ToString();
             temp_text += "     Health: ";
             temp_text += health.GetHealth() + "/" + health.max_hp;
-            temp_text += "\nMain Weapon: " + itemManager.getMainItemName();
-            temp_text += "     Alt Weapon: " + itemManager.getAltItemName();
+            temp_text += "\nMain Item: " + itemManager.getMainItemName();
+            temp_text += "     Alt Item: " + itemManager.getAltItemName();
 
         }
 
