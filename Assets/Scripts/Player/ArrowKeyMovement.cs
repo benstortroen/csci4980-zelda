@@ -1,7 +1,5 @@
 using System;
 using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
 

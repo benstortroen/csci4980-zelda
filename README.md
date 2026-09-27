@@ -2,6 +2,16 @@
 
 Unity Version: 6.6 (6000.6.2f1)
 
+# Controls
+
+WASD / Arrow Keys: move
+X: use sword
+Z: use alt item
+Space: cycle alt item
+
+ESC: Reload level
+1: use cheats
+
 ## AI Use and Acknowledgement
 
 **Tool:** Claude, Anthropic
