@@ -42,8 +42,6 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Key count: " + key_count);
-
         // reduce key cooldown timer
         key_cooldown = Math.Clamp(key_cooldown - Time.deltaTime, 0, key_cooldown_max);
     }
