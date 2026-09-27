@@ -17,14 +17,6 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
     static int roomHeight = 11;
     private Dictionary<int, Vector3> cameraVector = new Dictionary<int, Vector3>();
     private Dictionary<int, Vector3> playerVector = new Dictionary<int, Vector3>();
-    // Vector3 rightRoomVector = roomWidth * Vector3.right;
-    // Vector3 leftRoomVector = roomWidth * Vector3.left;
-    // Vector3 upRoomVector = roomHeight * Vector2.up;
-    // Vector3 downRoomVector = roomHeight * Vector2.down;
-    // Vector3 rightPlayerVector = 3 * Vector3.right;
-    // Vector3 leftPlayerVector = 3 * Vector3.left;
-    // Vector3 upPlayerVector = 3 * Vector3.up;
-    // Vector3 downPlayerVector = 3 * Vector3.down;
     [SerializeField] float transitionDuration = 2f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
