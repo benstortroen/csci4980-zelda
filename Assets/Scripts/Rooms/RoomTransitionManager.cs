@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic; // for typed Queues
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -46,8 +47,10 @@ public class RoomTransitionManager : MonoBehaviour, IReceiverComponent
         if (messageQueue.Count > 0 && !coroutineUtiilities.isRunningCoroutine())
         {
             DirectionalMessage msg = messageQueue.Dequeue();
+            alignPlayer(msg);
             runTransition(msg, cameraTransform, cameraVector);
             runTransition(msg, playerTransform, playerVector);
+            
         }
     }
 
@@ -76,5 +79,24 @@ public class RoomTransitionManager : MonoBehaviour, IReceiverComponent
                                                                 _transform.position, 
                                                                 finalPos,
                                                                 transitionDuration));
+    }
+
+    // Move player to center of doorway
+    private void alignPlayer(DirectionalMessage message)
+    {
+        if (message.getInput() == DirectionalMessage.RIGHT_ARROW || 
+            message.getInput() == DirectionalMessage.LEFT_ARROW)
+        {
+            playerTransform.position = new Vector3( playerTransform.position.x, 
+                                                    cameraTransform.position.y - 2,
+                                                    0);
+        }
+
+        else
+        {
+            playerTransform.position = new Vector3( cameraTransform.position.x, 
+                                                    playerTransform.position.y,
+                                                    0);
+        }
     }
 }
