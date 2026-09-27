@@ -1,3 +1,4 @@
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -16,31 +17,29 @@ public class CameraInputHandler : MonoBehaviour
     {
         if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, ArrowInputMessage.RIGHT_ARROW));
+            messenger.send(new ArrowInputMessage(this, TransitionMessage.RIGHT_ARROW));
 
         }
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, ArrowInputMessage.LEFT_ARROW));
+            messenger.send(new ArrowInputMessage(this, TransitionMessage.LEFT_ARROW));
 
         }
         if (Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, ArrowInputMessage.UP_ARROW));
+            messenger.send(new ArrowInputMessage(this, TransitionMessage.UP_ARROW));
 
         }
         if (Keyboard.current.downArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, ArrowInputMessage.DOWN_ARROW));
+            messenger.send(new ArrowInputMessage(this, TransitionMessage.DOWN_ARROW));
 
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    // constantly check for arrow keystrokes
+    void Update()
     {
-        if (collision.gameObject.tag == "door")
-        {
-            handleInput();
-        }
+        handleInput();
     }
 }

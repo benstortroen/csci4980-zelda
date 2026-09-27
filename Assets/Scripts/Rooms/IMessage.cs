@@ -41,21 +41,32 @@ public class UnHitMessage : IMessage
     }
 }
 
-public class ArrowInputMessage : IMessage
+public class TransitionMessage : IMessage
 {
-    // constants
     public static readonly int RIGHT_ARROW = 1;
     public static readonly int LEFT_ARROW = 2;
     public static readonly int UP_ARROW = 3;
     public static readonly int DOWN_ARROW = 4;
 
+    Component sender;
+
+    public Component getSender() {return sender;}
+}
+
+public class DoorMessage : TransitionMessage
+{
+    
+}
+
+public class ArrowInputMessage : TransitionMessage
+{
     int input;
     Component sender;
 
     public ArrowInputMessage(Component _sender, int _input)
     {
-        input = _input;
         sender = _sender;
+        input = _input;
     }
 
     public Component getSender() {return sender;}

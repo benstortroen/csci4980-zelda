@@ -11,10 +11,12 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
     MessengerComponent messenger;
     Queue<ArrowInputMessage> messageQueue;
 
-    [SerializeField] Vector3 rightRoomVector;
-    [SerializeField] Vector3 leftRoomVector;
-    [SerializeField] Vector3 upRoomVector;
-    [SerializeField] Vector3 downRoomVector;
+    static int roomWidth = 16;
+    static int roomHeight = 11;
+    Vector3 rightRoomVector = roomWidth * Vector3.right;
+    Vector3 leftRoomVector = roomWidth * Vector3.left;
+    Vector3 upRoomVector = roomHeight * Vector2.up;
+    Vector3 downRoomVector = roomHeight * Vector2.down;
     [SerializeField] float transitionDuration = 2f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,11 +28,13 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
         messenger = gameObject.GetComponent<MessengerComponent>();
         messenger.subscribe(this);
 
+        // Queue transition messages
         messageQueue = new Queue<ArrowInputMessage>();
     }
 
     void Update()
     {
+        // run transition is message is in queue
         if (messageQueue.Count > 0 && !coroutineUtiilities.isRunningCoroutine())
         {
             runTransition(messageQueue.Dequeue());
@@ -40,6 +44,7 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
     public void receive(IMessage message)
     {
         // cast message to arrowinputmessage type
+        // TODO: don't add to queue if coroutine is running
         if (message.GetType() == typeof(ArrowInputMessage))
         {
             messageQueue.Enqueue( (ArrowInputMessage) message);
@@ -47,16 +52,17 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
         
     }
 
+    // move the camera (this gameobject)
     void runTransition(ArrowInputMessage message)
     {
         int direction = message.getInput();
         Vector3 finalPos = _transform.position;
 
         // calculate final position of camera based on input direction
-        if (direction == ArrowInputMessage.RIGHT_ARROW) finalPos += rightRoomVector;
-        if (direction == ArrowInputMessage.LEFT_ARROW) finalPos += leftRoomVector;
-        if (direction == ArrowInputMessage.UP_ARROW) finalPos += upRoomVector;
-        if (direction == ArrowInputMessage.DOWN_ARROW) finalPos += downRoomVector;
+        if (direction == TransitionMessage.RIGHT_ARROW) finalPos += rightRoomVector;
+        if (direction == TransitionMessage.LEFT_ARROW) finalPos += leftRoomVector;
+        if (direction == TransitionMessage.UP_ARROW) finalPos += upRoomVector;
+        if (direction == TransitionMessage.DOWN_ARROW) finalPos += downRoomVector;
 
         // start moving the camera with coroutine
         StartCoroutine(coroutineUtiilities.moveObjectOverTime(_transform, 
