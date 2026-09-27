@@ -15,5 +15,6 @@ public class CheatsController : MonoBehaviour
     public static void toggleGodMode()
     {
         godMode = !godMode;
+        Debug.Log("God mode toggled: " + godMode);
     }
 }
