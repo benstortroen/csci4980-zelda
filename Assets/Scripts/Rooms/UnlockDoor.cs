@@ -16,19 +16,16 @@ public class UnlockDoor : MonoBehaviour
         if (other.tag == "locked_door" )
         {
             Debug.Log("Player collided with locked door");
-            
-            if (inventory.GetKeys() > 0 || CheatsController.godMode)
+
+            if (inventory.TryKey() || CheatsController.godMode)
             {
                 Debug.Log("Unlocking door...");
-                // Attempt to unlock door
-                inventory.UseKey();
                 LockedDoor lockedDoor = other.GetComponent<LockedDoor>();
-                if (lockedDoor != null)
-                {
-                    lockedDoor.Unlock();
-                }
+                lockedDoor.Unlock();
             }
             
         }
     }
+
+    
 }

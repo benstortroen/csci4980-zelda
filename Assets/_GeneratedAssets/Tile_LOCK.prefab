@@ -153,15 +153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LockedDoor
   doorPrefab: {fileID: 7831253185745277616, guid: efdbf48daf68d4e59a8782e0a3ba9cf6, type: 3}
+  unlockNearbyPrefab: {fileID: 9210034666615855624, guid: d54181689f7e44c898f413589bea302c, type: 3}
   lockedDoorRight: {fileID: -6156567986236837295, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
   lockedDoorLeft: {fileID: -168350733850073279, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
   lockedDoorUp1: {fileID: 2676951686893210948, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
   lockedDoorUp2: {fileID: 1190183501100362551, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
-  lockedDoorDown1: {fileID: 0}
-  lockedDoorDown2: {fileID: 0}
   openDoorRight: {fileID: 8548608813190635221, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
   openDoorLeft: {fileID: 4128549377107681131, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
   openDoorUp1: {fileID: -7486322232221505586, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
   openDoorUp2: {fileID: -3795631081737811192, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
-  openDoorDown1: {fileID: -2933362908514419553, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
-  openDoorDown2: {fileID: -1198152690982809227, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
