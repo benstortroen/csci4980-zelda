@@ -53,11 +53,7 @@ public class TransitionMessage : IMessage
     public Component getSender() {return sender;}
 }
 
-public class DoorMessage : TransitionMessage
-{
-    
-}
-
+// This should just be named "DirectionMessage"
 public class ArrowInputMessage : TransitionMessage
 {
     int input;
