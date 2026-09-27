@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8932605663907531581}
   - component: {fileID: 4910340565816222953}
   - component: {fileID: -1574974109169975999}
+  - component: {fileID: -8987782733280444736}
   m_Layer: 0
   m_Name: Tile_LOCK
   m_TagString: locked_door
@@ -139,3 +140,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8987782733280444736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457110002407716951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e7ad0b8036347308b70fe0ed4914b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LockedDoor
+  doorPrefab: {fileID: 7831253185745277616, guid: efdbf48daf68d4e59a8782e0a3ba9cf6, type: 3}
+  lockedDoorRight: {fileID: -6156567986236837295, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  lockedDoorLeft: {fileID: -168350733850073279, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  lockedDoorUp1: {fileID: 2676951686893210948, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  lockedDoorUp2: {fileID: 1190183501100362551, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  lockedDoorDown1: {fileID: 0}
+  lockedDoorDown2: {fileID: 0}
+  openDoorRight: {fileID: 8548608813190635221, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  openDoorLeft: {fileID: 4128549377107681131, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  openDoorUp1: {fileID: -7486322232221505586, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  openDoorUp2: {fileID: -3795631081737811192, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  openDoorDown1: {fileID: -2933362908514419553, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}
+  openDoorDown2: {fileID: -1198152690982809227, guid: 855e35948f8bf4adfb40805eeb1846ab, type: 3}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic; // for typed Queues
+using System.Drawing;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -52,8 +53,8 @@ public class RoomTransitionManager : MonoBehaviour, IReceiverComponent
 
     public void receive(IMessage message)
     {
-        // TODO: don't add to queue if coroutine is running
-        if (message.GetType() == typeof(DirectionalMessage) && !coroutineUtiilities.isRunningCoroutine())
+        // don't add to queue if coroutine is running
+        if (message.GetType() == typeof(DirectionalMessage) && !coroutineUtiilities.isRunningCoroutine() && messageQueue.Count == 0)
         {
             // Queue messages
             messageQueue.Enqueue( (DirectionalMessage) message);
