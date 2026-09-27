@@ -5,11 +5,11 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 // move camera to new room
-public class RoomTransition : MonoBehaviour, IReceiverComponent
+public class RoomTransitionManager : MonoBehaviour, IReceiverComponent
 {
     CoroutineUtiilities coroutineUtiilities;
     MessengerComponent messenger;
-    Queue<ArrowInputMessage> messageQueue;
+    Queue<DirectionalMessage> messageQueue;
     [SerializeField] Transform cameraTransform;
     [SerializeField] Transform playerTransform;
 
@@ -23,20 +23,20 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
     void Start()
     {
         // Fill dictionaries with transition messages
-        cameraVector.Add(TransitionMessage.RIGHT_ARROW, roomWidth * Vector3.right);
-        cameraVector.Add(TransitionMessage.LEFT_ARROW, roomWidth * Vector3.left);
-        cameraVector.Add(TransitionMessage.UP_ARROW, roomHeight * Vector3.up);
-        cameraVector.Add(TransitionMessage.DOWN_ARROW, roomHeight * Vector3.down);
-        playerVector.Add(TransitionMessage.RIGHT_ARROW, 4 * Vector3.right);
-        playerVector.Add(TransitionMessage.LEFT_ARROW, 4 * Vector3.left);
-        playerVector.Add(TransitionMessage.UP_ARROW, 4 * Vector3.up);
-        playerVector.Add(TransitionMessage.DOWN_ARROW, 4 * Vector3.down);
+        cameraVector.Add(DirectionalMessage.RIGHT_ARROW, roomWidth * Vector3.right);
+        cameraVector.Add(DirectionalMessage.LEFT_ARROW, roomWidth * Vector3.left);
+        cameraVector.Add(DirectionalMessage.UP_ARROW, roomHeight * Vector3.up);
+        cameraVector.Add(DirectionalMessage.DOWN_ARROW, roomHeight * Vector3.down);
+        playerVector.Add(DirectionalMessage.RIGHT_ARROW, 4 * Vector3.right);
+        playerVector.Add(DirectionalMessage.LEFT_ARROW, 4 * Vector3.left);
+        playerVector.Add(DirectionalMessage.UP_ARROW, 4 * Vector3.up);
+        playerVector.Add(DirectionalMessage.DOWN_ARROW, 4 * Vector3.down);
         
         // Setup messenger components and utilities
         coroutineUtiilities = new CoroutineUtiilities();
         messenger = gameObject.GetComponent<MessengerComponent>();
         messenger.subscribe(this);
-        messageQueue = new Queue<ArrowInputMessage>();
+        messageQueue = new Queue<DirectionalMessage>();
     }
 
     void Update()
@@ -44,7 +44,7 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
         // run transition if message is in queue
         if (messageQueue.Count > 0 && !coroutineUtiilities.isRunningCoroutine())
         {
-            ArrowInputMessage msg = messageQueue.Dequeue();
+            DirectionalMessage msg = messageQueue.Dequeue();
             runTransition(msg, cameraTransform, cameraVector);
             runTransition(msg, playerTransform, playerVector);
         }
@@ -53,16 +53,16 @@ public class RoomTransition : MonoBehaviour, IReceiverComponent
     public void receive(IMessage message)
     {
         // TODO: don't add to queue if coroutine is running
-        if (message.GetType() == typeof(ArrowInputMessage) && !coroutineUtiilities.isRunningCoroutine())
+        if (message.GetType() == typeof(DirectionalMessage) && !coroutineUtiilities.isRunningCoroutine())
         {
             // Queue messages
-            messageQueue.Enqueue( (ArrowInputMessage) message);
+            messageQueue.Enqueue( (DirectionalMessage) message);
         }
         
     }
 
     // move the camera (this gameobject)
-    void runTransition(ArrowInputMessage message, Transform _transform, Dictionary<int, Vector3> dict)
+    void runTransition(DirectionalMessage message, Transform _transform, Dictionary<int, Vector3> dict)
     {
         int direction = message.getInput();
         Vector3 finalPos = _transform.position;

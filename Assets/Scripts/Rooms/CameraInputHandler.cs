@@ -17,22 +17,22 @@ public class CameraInputHandler : MonoBehaviour
     {
         if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, TransitionMessage.RIGHT_ARROW));
+            messenger.send(new DirectionalMessage(this, DirectionalMessage.RIGHT_ARROW));
 
         }
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, TransitionMessage.LEFT_ARROW));
+            messenger.send(new DirectionalMessage(this, DirectionalMessage.LEFT_ARROW));
 
         }
         if (Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, TransitionMessage.UP_ARROW));
+            messenger.send(new DirectionalMessage(this, DirectionalMessage.UP_ARROW));
 
         }
         if (Keyboard.current.downArrowKey.wasPressedThisFrame)
         {
-            messenger.send(new ArrowInputMessage(this, TransitionMessage.DOWN_ARROW));
+            messenger.send(new DirectionalMessage(this, DirectionalMessage.DOWN_ARROW));
 
         }
     }
