@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Collector : MonoBehaviour
+public class PickupCollector : MonoBehaviour
 {
     private Inventory inventory;
     private HealthComponent healthComponent;

@@ -13,12 +13,11 @@ public class ItemManager : MonoBehaviour
 
 
     // Components
-    private ArrowKeyMovement arrowKeyMovement;
-    private Vector2 facing_direction;
+    private StateParameters stateParameters; // used to get facing direction
 
     void Start()
     {
-        arrowKeyMovement = gameObject.GetComponent<ArrowKeyMovement>();
+        stateParameters = gameObject.GetComponent<StateParameters>();
 
         // Instantiate main item
         main_item = Instantiate(main_item_prefab, Vector3.zero, Quaternion.identity);
@@ -38,14 +37,7 @@ public class ItemManager : MonoBehaviour
 
     void Update()
     {
-
-        UpdateDirection();
         HandleInput();
-    }
-
-    void UpdateDirection()
-    {
-        facing_direction = arrowKeyMovement.GetDirectionFacing();
     }
 
     // TODO: Add cooldown between item use?
@@ -55,14 +47,14 @@ public class ItemManager : MonoBehaviour
         if (Keyboard.current.xKey.wasPressedThisFrame)
         {
             Debug.Log("Used main item");
-            main_item.GetComponent<IItem>().UseItem(transform.position, facing_direction);
+            main_item.GetComponent<IItem>().UseItem(transform.position, stateParameters.GetFacingDirection());
         }
 
         // Use alt item on "Z" keystroke
         else if (Keyboard.current.zKey.wasPressedThisFrame)
         {
             Debug.Log("Used alt item");
-            alt_item.GetComponent<IItem>().UseItem(transform.position, facing_direction);
+            alt_item.GetComponent<IItem>().UseItem(transform.position, stateParameters.GetFacingDirection());
         }
         // Cycle alt item on "Space" keystroke
         else if (Keyboard.current.spaceKey.wasPressedThisFrame)

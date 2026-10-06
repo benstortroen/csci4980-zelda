@@ -254467,14 +254467,17 @@ GameObject:
   - component: {fileID: 2085827813}
   - component: {fileID: 2085827815}
   - component: {fileID: 2085827817}
+  - component: {fileID: 2085827828}
   - component: {fileID: 2085827816}
-  - component: {fileID: 2085827818}
+  - component: {fileID: 2085827822}
   - component: {fileID: 2085827819}
   - component: {fileID: 2085827821}
-  - component: {fileID: 2085827822}
+  - component: {fileID: 2085827818}
   - component: {fileID: 2085827824}
-  - component: {fileID: 2085827825}
   - component: {fileID: 2085827826}
+  - component: {fileID: 2085827825}
+  - component: {fileID: 2085827827}
+  - component: {fileID: 2085827829}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -254734,6 +254737,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d14fe5b80ff4d97a69a7821a313b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnlockDoor
+--- !u!95 &2085827827
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085827812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 540078639714c4e6596e9e04390ce1a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2085827828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085827812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc019c279fe3e497ab08cdd941ee99bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateParameters
+--- !u!114 &2085827829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085827812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bed2cdf315be494192e227bea055576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &2085889972
 PrefabInstance:
   m_ObjectHideFlags: 0
