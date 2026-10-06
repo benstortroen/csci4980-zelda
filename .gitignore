@@ -22,6 +22,7 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 *.log
+p1-milestone-win/
 
 # MACOS_X
 .DS_Store
