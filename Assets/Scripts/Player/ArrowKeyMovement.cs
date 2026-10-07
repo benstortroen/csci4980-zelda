@@ -7,39 +7,52 @@ using UnityEngine.UIElements;
 public class ArrowKeyMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    StateParameters stateParameters;
+
     [SerializeField] private float movement_speed = 4;
-    private Vector2 directionFacing;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        stateParameters = GetComponent<StateParameters>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector2 current_input = GetInput();
-        AlignWithAxis(current_input);
-        
+        // Align player position with grid
+        SnapToGrid(current_input);
+        // Set velocity based on input
+        rb.linearVelocity = current_input * movement_speed;
+
+        // Set Player's State Paramters
+        // set player's moving state
+        stateParameters.SetIsMoving(current_input != Vector2.zero);
         // set player's facing direction
         if (current_input != Vector2.zero)
         {
-            directionFacing = current_input;
+            // assume player has StateParameters component to send facing direction to
+            gameObject.GetComponent<StateParameters>().SetFacingDirection(current_input);
         }
-        
-        // Set velocity based on input 
-        rb.linearVelocity = current_input * movement_speed;
         
     }
 
     Vector2 GetInput()
     {
+        // Do not move if player is attacking
+        if (stateParameters.GetIsAttacking())
+        {
+            return Vector2.zero;
+        }
+        
         float horizontal_input = Input.GetAxisRaw("Horizontal");
         float vertical_input = Input.GetAxisRaw("Vertical");
 
         // Only allow one axis of movement at a time
-        if (horizontal_input != 0f)
+        if (horizontal_input != 0f )
         {
             vertical_input = 0f;
         }
@@ -55,7 +68,7 @@ public class ArrowKeyMovement : MonoBehaviour
     // if player is moving horizontally, snap to nearest y grid
     // if player is moving vertically, snap to nearest x grid
     // Each grid step is 0.5 units
-    private void AlignWithAxis(Vector2 input)
+    private void SnapToGrid(Vector2 input)
     {
         Vector3 temp_pos = transform.position;
         
@@ -92,10 +105,5 @@ public class ArrowKeyMovement : MonoBehaviour
         }
 
         transform.position = temp_pos;
-    }
-
-    public Vector2 GetDirectionFacing()
-    {
-        return directionFacing;
     }
 }

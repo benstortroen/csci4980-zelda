@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,15 +11,15 @@ public class ItemManager : MonoBehaviour
     private GameObject alt_item;
     private GameObject[] alt_items;
     private int alt_index;
-
+    
+    private float attack_duration = 0.24f;
 
     // Components
-    private ArrowKeyMovement arrowKeyMovement;
-    private Vector2 facing_direction;
+    private StateParameters stateParameters; // used to get facing direction
 
     void Start()
     {
-        arrowKeyMovement = gameObject.GetComponent<ArrowKeyMovement>();
+        stateParameters = gameObject.GetComponent<StateParameters>();
 
         // Instantiate main item
         main_item = Instantiate(main_item_prefab, Vector3.zero, Quaternion.identity);
@@ -38,31 +39,27 @@ public class ItemManager : MonoBehaviour
 
     void Update()
     {
-
-        UpdateDirection();
         HandleInput();
-    }
-
-    void UpdateDirection()
-    {
-        facing_direction = arrowKeyMovement.GetDirectionFacing();
     }
 
     // TODO: Add cooldown between item use?
     void HandleInput()
     {
+        
         // Use main item on "X" keystroke
         if (Keyboard.current.xKey.wasPressedThisFrame)
         {
             Debug.Log("Used main item");
-            main_item.GetComponent<IItem>().UseItem(transform.position, facing_direction);
+            main_item.GetComponent<IItem>().UseItem(transform.position, stateParameters.GetFacingDirection());
+            stateParameters.SetIsAttacking(true);
+            StartCoroutine(ToggleAttackState());
         }
 
         // Use alt item on "Z" keystroke
         else if (Keyboard.current.zKey.wasPressedThisFrame)
         {
             Debug.Log("Used alt item");
-            alt_item.GetComponent<IItem>().UseItem(transform.position, facing_direction);
+            alt_item.GetComponent<IItem>().UseItem(transform.position, stateParameters.GetFacingDirection());
         }
         // Cycle alt item on "Space" keystroke
         else if (Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -85,6 +82,12 @@ public class ItemManager : MonoBehaviour
     public string getAltItemName()
     {
         return alt_item.GetComponent<IItem>().ItemName;
+    }
+
+    IEnumerator ToggleAttackState()
+    {
+        yield return new WaitForSeconds(attack_duration);
+        stateParameters.SetIsAttacking(false);
     }
 
 }
