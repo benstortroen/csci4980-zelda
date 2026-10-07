@@ -6,18 +6,20 @@ public class EnemyMovement : MonoBehaviour
 {
 
     public GameObject player;
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    private bool moving = false;
-    private int direction = 0;
-    private int distance = 0;
-    private Vector2 startPos;
+    protected bool moving = false;
+    protected float direction = 0;
+    protected float distance = 0;
+    protected Vector2 startPos;
+
+    public float damage = 0.5f;
 
 
 
     public float speed = 2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SnapToGrid();
@@ -32,30 +34,15 @@ public class EnemyMovement : MonoBehaviour
             // Debug.Log("Moving");
             SnapToGrid();
             startPos = (Vector2)transform.position;
-            int new_d;
+            float new_d;
             do
             {
-                new_d = UnityEngine.Random.Range(0, 4);
-                direction = UnityEngine.Random.Range(0, 4);
-            } while (new_d != direction);
+                new_d = UnityEngine.Random.Range(0, 8) * 90f;
+            } while (new_d == direction);
             direction = new_d;
 
             distance = UnityEngine.Random.Range(1, 8);
-            switch (direction)
-            {
-                case 0:
-                    rb.linearVelocity = new Vector2(speed, 0);
-                    break;
-                case 1:
-                    rb.linearVelocity = new Vector2(-speed, 0);
-                    break;
-                case 2:
-                    rb.linearVelocity = new Vector2(0, speed);
-                    break;
-                default:
-                    rb.linearVelocity = new Vector2(0, -speed);
-                    break;
-            }
+            MoveDirSpd(direction, speed);
             moving = true;
         }
         else
@@ -69,8 +56,15 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    protected void MoveDirSpd(float ang, float spd)
+    {
+        Vector2 vel = Quaternion.Euler(0, 0, ang) * Vector2.right;
+        vel *= spd;
+        rb.linearVelocity = vel;
+    }
+
     // Inflict damage to player
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         // Debug.Log("Collision");
         moving = false;
@@ -78,12 +72,15 @@ public class EnemyMovement : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            player.GetComponent<HealthComponent>().DealDamage(0.5f);
+            player.GetComponent<HealthComponent>().DealDamage(damage);
         }
-
+        else if (other.tag == "Wall")
+        {
+            Debug.Log("Hit wall");
+        }
     }
 
-    private void SnapToGrid()
+    protected void SnapToGrid()
     {
         Vector2 temp = transform.position;
         float x_offset = transform.position.x % 0.5f;
@@ -110,7 +107,7 @@ public class EnemyMovement : MonoBehaviour
         transform.position = temp;
     }
 
-    private bool AlignedToPlayer()
+    protected bool AlignedToPlayer()
     {
         if (Math.Abs(transform.position.x - Math.Round(player.transform.position.x)) < 0.1f
             || Math.Abs(transform.position.y - Math.Round(player.transform.position.y)) < 0.1f)
