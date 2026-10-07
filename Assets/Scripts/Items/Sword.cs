@@ -26,7 +26,7 @@ public class Sword : MonoBehaviour, IItem
 
     IEnumerator DisableItem()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.25f);
         gameObject.SetActive(false);
     }
 

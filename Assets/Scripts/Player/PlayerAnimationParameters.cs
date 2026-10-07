@@ -19,18 +19,11 @@ public class PlayerAnimationParameters : MonoBehaviour
         animator.SetFloat("horizontal_input", facingDirection.x);
         animator.SetFloat("vertical_input", facingDirection.y);
 
-        // play animation only when player is moving
-        if (stateParameters.GetIsMoving())
-        {
-            animator.speed = 1.0f;
-        }
-        else
-        {
-            animator.speed = 0.0f;
-        }
+        // moving state, drives the Idle <-> Walk transitions
+        animator.SetBool("is_moving", stateParameters.GetIsMoving());
 
-        bool isAttacking = stateParameters.GetIsAttacking();
-        animator.SetBool("is_attacking", isAttacking);
+        // attacking state
+        animator.SetBool("is_attacking", stateParameters.GetIsAttacking());
 
     }
 }

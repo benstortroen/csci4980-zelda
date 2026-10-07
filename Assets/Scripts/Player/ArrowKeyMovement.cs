@@ -7,12 +7,16 @@ using UnityEngine.UIElements;
 public class ArrowKeyMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    StateParameters stateParameters;
+
     [SerializeField] private float movement_speed = 4;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        stateParameters = GetComponent<StateParameters>();
     }
 
     // Update is called once per frame
@@ -21,12 +25,12 @@ public class ArrowKeyMovement : MonoBehaviour
         Vector2 current_input = GetInput();
         // Align player position with grid
         SnapToGrid(current_input);
-        // Set velocity based on input 
+        // Set velocity based on input
         rb.linearVelocity = current_input * movement_speed;
 
         // Set Player's State Paramters
         // set player's moving state
-        gameObject.GetComponent<StateParameters>().SetIsMoving(current_input != Vector2.zero);
+        stateParameters.SetIsMoving(current_input != Vector2.zero);
         // set player's facing direction
         if (current_input != Vector2.zero)
         {
@@ -38,11 +42,17 @@ public class ArrowKeyMovement : MonoBehaviour
 
     Vector2 GetInput()
     {
+        // Do not move if player is attacking
+        if (stateParameters.GetIsAttacking())
+        {
+            return Vector2.zero;
+        }
+        
         float horizontal_input = Input.GetAxisRaw("Horizontal");
         float vertical_input = Input.GetAxisRaw("Vertical");
 
         // Only allow one axis of movement at a time
-        if (horizontal_input != 0f)
+        if (horizontal_input != 0f )
         {
             vertical_input = 0f;
         }

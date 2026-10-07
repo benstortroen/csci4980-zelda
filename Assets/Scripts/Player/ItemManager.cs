@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,8 @@ public class ItemManager : MonoBehaviour
     private GameObject alt_item;
     private GameObject[] alt_items;
     private int alt_index;
-
+    
+    private float attack_duration = 0.24f;
 
     // Components
     private StateParameters stateParameters; // used to get facing direction
@@ -43,11 +45,14 @@ public class ItemManager : MonoBehaviour
     // TODO: Add cooldown between item use?
     void HandleInput()
     {
+        
         // Use main item on "X" keystroke
         if (Keyboard.current.xKey.wasPressedThisFrame)
         {
             Debug.Log("Used main item");
             main_item.GetComponent<IItem>().UseItem(transform.position, stateParameters.GetFacingDirection());
+            stateParameters.SetIsAttacking(true);
+            StartCoroutine(ToggleAttackState());
         }
 
         // Use alt item on "Z" keystroke
@@ -77,6 +82,12 @@ public class ItemManager : MonoBehaviour
     public string getAltItemName()
     {
         return alt_item.GetComponent<IItem>().ItemName;
+    }
+
+    IEnumerator ToggleAttackState()
+    {
+        yield return new WaitForSeconds(attack_duration);
+        stateParameters.SetIsAttacking(false);
     }
 
 }
