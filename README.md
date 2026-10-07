@@ -9,7 +9,7 @@ X: use sword
 Z: use alt item
 Space: cycle alt item
 
-ESC: Reload level
+ESC: Reload level  
 1: use cheats
 
 ## AI Use and Acknowledgement
