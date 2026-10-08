@@ -62,9 +62,9 @@ public class BoomerangProjectile : MonoBehaviour, IItem
             }
         }
 
-        // boomerang hits enemy or wall
+        // boomerang hits enemy
         // go back to player
-        else if (!collision.isTrigger)
+        else if (collision.tag == "enemy")
         {
             tracking_player = true;
 
