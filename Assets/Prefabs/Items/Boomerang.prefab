@@ -82,15 +82,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5718304784226621280, guid: a3ce3df61d6f146539a71bd963091d40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!114 &2720560975836716419
@@ -105,4 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7ada62af47642758441769bc82cec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  projectile_prefab: {fileID: 0}
+  boomerang_available: 0
+  projectile_prefab: {fileID: 7441980473451267361, guid: 5d2d5cc1548764855ae8c78203fcf376, type: 3}

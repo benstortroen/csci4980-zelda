@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1418193641558059574}
   - component: {fileID: 4440248798196033950}
   - component: {fileID: 5397020863131556369}
+  - component: {fileID: 7187941581880584426}
   m_Layer: 0
   m_Name: BoomerangProjectile
   m_TagString: item
@@ -45,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34db3823225aa45f8a613cb18fcaa6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  move_speed: 3
+  player_transform: {fileID: 0}
+  boomerang: {fileID: 2720560975836716419, guid: 8c57e0645ec60487e97838d6e4c39ddb, type: 3}
 --- !u!212 &5397020863131556369
 SpriteRenderer:
   serializedVersion: 3
@@ -92,16 +96,38 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5718304784226621280, guid: a3ce3df61d6f146539a71bd963091d40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!95 &7187941581880584426
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441980473451267361}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f3a6a7925d5a4a55b919cac289aba24, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

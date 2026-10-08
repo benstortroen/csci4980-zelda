@@ -1,6 +1,8 @@
 using UnityEngine;
 
 // throwable item
+// goes 5 blocks
+// takes directional input 
 // wait until boomerang is received
 // stuns enemy
 
@@ -9,7 +11,7 @@ public class Boomerang : MonoBehaviour, IItem
     // states
     public int Damage { get; set; } = 1; // should be 0.5f
     public string ItemName { get; set; }
-    private bool boomerang_available;
+    public bool boomerang_available;
 
     // prefab
     [SerializeField] private GameObject projectile_prefab;
@@ -17,49 +19,42 @@ public class Boomerang : MonoBehaviour, IItem
     public void Start()
     {
         ItemName = "Boomerang";
+        boomerang_available = true;
     }
 
     public void UseItem(Vector3 position, Vector2 direction)
     {
+        
+        
         if (boomerang_available)
         {
+            Debug.Log("using boomering");
+
             // enable item
             gameObject.SetActive(true);
 
-            // spawn arrow in facing direction
+            // prevent boomerang from being recasted
+            boomerang_available = false;
+
+            // create direction vector from input
+            float horizontal_input = Input.GetAxisRaw("Horizontal");
+            float vertical_input = Input.GetAxisRaw("Vertical");
+            Vector2 input_dir = new Vector3(horizontal_input, vertical_input);
+            input_dir.Normalize();
+
+            // use input_dir only if it is non-zero
+            if (input_dir != Vector2.zero)
+            {
+                direction = input_dir;
+            }
+
+            // spawn projectile
             Vector3 new_position = position + new Vector3(direction.x, direction.y, 0);
             GameObject projectile = Instantiate(projectile_prefab, new_position, Quaternion.identity);
 
-            projectile.GetComponent<Arrow>().SetDirection(direction);
-
-            // rotate item to face dirction
-            RotateItem(direction, projectile);
+            // set projectile direction
+            projectile.GetComponent<BoomerangProjectile>().SetDirection(direction);
         }
 
-    }
-
-    private void RotateItem(Vector2 direction, GameObject projectile)
-    {
-        float rotation = 0f;
-
-        // verbose rotation control flow
-        if (direction.x == 1)
-        {
-            rotation = 0;
-        }
-        else if (direction.y == 1)
-        {
-            rotation = 90;
-        }
-        else if (direction.x == -1)
-        {
-            rotation = 180;
-        }
-        else if (direction.y == -1)
-        {
-            rotation = 270;
-        }
-
-        projectile.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 }
