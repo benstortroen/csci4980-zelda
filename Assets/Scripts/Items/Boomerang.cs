@@ -25,7 +25,6 @@ public class Boomerang : MonoBehaviour, IItem
     public void UseItem(Vector3 position, Vector2 direction)
     {
         
-        
         if (boomerang_available)
         {
             Debug.Log("using boomering");
@@ -52,8 +51,10 @@ public class Boomerang : MonoBehaviour, IItem
             Vector3 new_position = position + new Vector3(direction.x, direction.y, 0);
             GameObject projectile = Instantiate(projectile_prefab, new_position, Quaternion.identity);
 
-            // set projectile direction
-            projectile.GetComponent<BoomerangProjectile>().SetDirection(direction);
+            // set projectile parameters
+            BoomerangProjectile boomerang_projectile = projectile.GetComponent<BoomerangProjectile>();
+            boomerang_projectile.SetDirection(direction);
+            boomerang_projectile.boomerang = gameObject.GetComponent<Boomerang>();
         }
 
     }
