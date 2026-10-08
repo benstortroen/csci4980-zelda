@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             float offset = Math.Abs(((Vector2)transform.position - startPos).magnitude);
-            if (offset >= distance || (offset >= 2 && AlignedToPlayer()))
+            if (offset >= distance || (offset >= 2 && AlignedToPlayer() != -1))
             {
                 SnapToGrid();
                 moving = false;
@@ -107,13 +107,25 @@ public class EnemyMovement : MonoBehaviour
         transform.position = temp;
     }
 
-    protected bool AlignedToPlayer()
+    protected int AlignedToPlayer()
     {
-        if (Math.Abs(transform.position.x - Math.Round(player.transform.position.x)) < 0.1f
-            || Math.Abs(transform.position.y - Math.Round(player.transform.position.y)) < 0.1f)
+
+        float x_dif = (float)(transform.position.x - Math.Round(player.transform.position.x));
+        float y_dif = (float)(transform.position.y - Math.Round(player.transform.position.y));
+        if (Math.Abs(x_dif) < 0.1f)
         {
-            return true;
+            return Math.Sign(y_dif) < 0 ? 3 : 1;
         }
-        return false;
+        else if (Math.Abs(y_dif) < 0.1f)
+        {
+            return Math.Sign(x_dif) < 0 ? 2 : 0;
+        }
+        return -1;
+        // if (Math.Abs(transform.position.x - Math.Round(player.transform.position.x)) < 0.1f
+        //     || Math.Abs(transform.position.y - Math.Round(player.transform.position.y)) < 0.1f)
+        // {
+        //     return true;
+        // }
+        // return false;
     }
 }
