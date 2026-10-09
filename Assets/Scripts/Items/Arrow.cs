@@ -21,9 +21,12 @@ public class Arrow : MonoBehaviour, IItem
         direction = dir;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // this doesn't work
-        gameObject.SetActive(false);
+        if (!collision.isTrigger)
+        {
+            gameObject.SetActive(false);
+        }
+        
     }
 }
