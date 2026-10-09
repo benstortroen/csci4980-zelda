@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class SpikeTrapMovement : EnemyMovement
+public class SpikeTrapMovement : EnemyBehaviorComponent
 {
 
     private enum State

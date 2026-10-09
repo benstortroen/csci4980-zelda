@@ -153,8 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa1bdf882bc64559a57fffc8f7180c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  allowed_direction: 0
   isPushable: 0
+  canMoveNorth: 0
+  canMoveWest: 0
+  canMoveEast: 0
+  canMoveSouth: 0
 --- !u!1001 &42527896797549395
 PrefabInstance:
   m_ObjectHideFlags: 0

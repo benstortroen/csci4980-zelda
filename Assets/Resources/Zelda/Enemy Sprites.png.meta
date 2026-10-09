@@ -378,6 +378,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: WallMaster
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 201
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f663f52875b1747ea8e2d0b570f09ee5
+      internalID: -610533487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -404,6 +426,7 @@ TextureImporter:
       Goria B 4: -461150003
       Keese (Idle): 99637849
       Stalfos: 5673006790503200954
+      WallMaster: -610533487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

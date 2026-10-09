@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyBehaviorComponent : MonoBehaviour
 {
 
     public GameObject player;

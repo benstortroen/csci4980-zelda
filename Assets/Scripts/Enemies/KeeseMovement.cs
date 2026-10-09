@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UI;
 using UnityEngine;
 
-public class KeeseMovement : EnemyMovement
+public class KeeseMovement : EnemyBehaviorComponent
 {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
