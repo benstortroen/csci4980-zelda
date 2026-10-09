@@ -39,7 +39,6 @@ public class PushBlock : MonoBehaviour
             // find the direction to push the block and send it to the move block function
             Vector3 push_direction = gameObject.transform.position - collision.transform.position;
             push_direction = push_direction.normalized;
-            Debug.Log(push_direction);
             MoveBlock(push_direction);
         }
     }
