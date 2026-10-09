@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
             direction = new_d;
 
             distance = UnityEngine.Random.Range(1, 8);
-            MoveDirSpd(direction, speed);
+            Move(direction, speed);
             moving = true;
         }
         else
@@ -56,11 +56,16 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    protected void MoveDirSpd(float ang, float spd)
+    protected void Move(float ang, float spd)
     {
         Vector2 vel = Quaternion.Euler(0, 0, ang) * Vector2.right;
         vel *= spd;
         rb.linearVelocity = vel;
+    }
+
+    protected void StopMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
     }
 
     // Inflict damage to player
@@ -76,7 +81,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (other.tag == "Wall")
         {
-            Debug.Log("Hit wall");
+            // Debug.Log("Hit wall");
         }
     }
 
@@ -110,8 +115,8 @@ public class EnemyMovement : MonoBehaviour
     protected int AlignedToPlayer()
     {
 
-        float x_dif = (float)(transform.position.x - Math.Round(player.transform.position.x));
-        float y_dif = (float)(transform.position.y - Math.Round(player.transform.position.y));
+        float x_dif = (float)(Math.Round(player.transform.position.x) - transform.position.x);
+        float y_dif = (float)(Math.Round(player.transform.position.y) - transform.position.y);
         if (Math.Abs(x_dif) < 0.1f)
         {
             return Math.Sign(y_dif) < 0 ? 3 : 1;

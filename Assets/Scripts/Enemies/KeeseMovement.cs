@@ -36,13 +36,13 @@ public class KeeseMovement : EnemyMovement
             {
                 distance = UnityEngine.Random.Range(1, 8);
             }
-            MoveDirSpd(direction, speed);
+            Move(direction, speed);
             moving = true;
         }
         else
         {
             float offset = Math.Abs(((Vector2)transform.position - startPos).magnitude);
-            if (offset >= distance || (offset >= 5 && AlignedToPlayer()))
+            if (offset >= distance || (offset >= 5 && AlignedToPlayer() != -1))
             {
                 SnapToGrid();
                 moving = false;
