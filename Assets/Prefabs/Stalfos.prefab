@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 0}
-  KnockBackSpeed: 10
-  KnockBackDist: 2
+  knockbackSpeed: 4
+  knockbackDist: 3
   damage: 0.5
   speed: 2
 --- !u!114 &-7990302354983952045
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e54fb40d3411451087fa381a9a33301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  max_hp: 10
+  max_hp: 2
   drops:
   - {fileID: 8133875825057967034, guid: 3c42f7f16fee14645b86d16ae1b7f5b0, type: 3}
   - {fileID: 8133875825057967034, guid: 0e83c798ea2604306a1568144f3dcdf1, type: 3}
