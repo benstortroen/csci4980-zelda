@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 39.002, y: 8.004, z: 0}
-  m_LocalScale: {x: 0.059999995, y: 0.059999995, z: 0.059999995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,12 +85,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7939062514959523730, guid: 248957b2b32ec4de5a50872bb9bb22dc, type: 3}
+  m_Sprite: {fileID: 5673006790503200954, guid: 757893c96f28f47d09c461953cbfb3b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.8, y: 14.48}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -161,13 +161,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.8, y: 14.48}
-    newSize: {x: 12.8, y: 14.48}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 14, y: 14}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &2730567600531809250
 MonoBehaviour:
@@ -182,6 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 0}
+  KnockBackSpeed: 10
+  KnockBackDist: 2
+  damage: 0.5
   speed: 2
 --- !u!114 &-7990302354983952045
 MonoBehaviour:
@@ -195,7 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e54fb40d3411451087fa381a9a33301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  max_hp: 2
-  current_hp: 0
-  rupee: {fileID: 8133875825057967034, guid: 0e83c798ea2604306a1568144f3dcdf1, type: 3}
-  heart: {fileID: 8133875825057967034, guid: 3c42f7f16fee14645b86d16ae1b7f5b0, type: 3}
+  max_hp: 10
+  drops:
+  - {fileID: 8133875825057967034, guid: 3c42f7f16fee14645b86d16ae1b7f5b0, type: 3}
+  - {fileID: 8133875825057967034, guid: 0e83c798ea2604306a1568144f3dcdf1, type: 3}
+  uniqueDrop: {fileID: 0}

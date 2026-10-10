@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class ItemManager : MonoBehaviour
     private GameObject alt_item;
     private GameObject[] alt_items;
     private int alt_index;
+    private int alt_items_count = 0;
     
     private float attack_duration = 0.24f;
 
@@ -25,14 +27,29 @@ public class ItemManager : MonoBehaviour
         main_item = Instantiate(main_item_prefab, Vector3.zero, Quaternion.identity);
         main_item.SetActive(true);
         // Instantiate alt items    
-        alt_items = new GameObject[alt_items_prefab.Length];
+        alt_items = new GameObject[64];
         for (int i = 0; i < alt_items_prefab.Length; i++)
         {
             alt_items[i] = Instantiate(alt_items_prefab[i], Vector3.zero, Quaternion.identity);
+            alt_items_count += 1;
         }
 
         alt_item = alt_items[0];
         alt_item.SetActive(true);
+    }
+
+    // add new item to alt items array
+    public void AddItem(GameObject item)
+    {
+        // ignore items the player already holds (e.g. the sword's own trigger touching the player)
+        if (item == main_item || alt_items.Contains(item)) return;
+
+        alt_items[alt_items_count] = item;
+        alt_items_count += 1;
+
+        // disable sprite renderer and trigger on pickup
+        item.GetComponent<BoxCollider2D>().enabled = false;
+        item.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // use item when key is pressed
@@ -66,7 +83,7 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log("Swapped alt item");
             alt_index++;
-            if (alt_index >= alt_items.Length) alt_index = 0;
+            if (alt_index >= alt_items_count) alt_index = 0;
             // Swap alt item
             alt_item.SetActive(false);
             alt_item = alt_items[alt_index];

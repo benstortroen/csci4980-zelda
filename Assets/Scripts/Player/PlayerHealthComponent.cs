@@ -4,6 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthComponent : HealthComponent
 {
+
+    StateParameters stateParameters;
+    ArrowKeyMovement movement;
+
+    protected override void Start()
+    {
+        base.Start();
+        stateParameters = GetComponent<StateParameters>();
+        movement = GetComponent<ArrowKeyMovement>();
+    }
+
     public override void OnDeath()
     {
         // Reload scene
@@ -13,7 +24,7 @@ public class PlayerHealthComponent : HealthComponent
 
     public override void DealDamage(float d)
     {
-        if (!CheatsController.godMode)
+        if (!CheatsController.godMode && !stateParameters.GetKnockbackMode())
         {
             base.DealDamage(d);
         }

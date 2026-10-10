@@ -20,6 +20,11 @@ public class Inventory : MonoBehaviour
         return rupee_count;
     }
 
+    public int GetKeys()
+    {
+        return key_count;
+    }
+
     public void AddKeys(int num_keys)
     {
         key_count += num_keys;

@@ -3,24 +3,27 @@ using UnityEngine;
 public class EnemyHealthComponent : HealthComponent
 {
 
-    [SerializeField] private GameObject rupee;
-    [SerializeField] private GameObject heart;
-    void Start()
+    [SerializeField] private GameObject[] drops;
+    [SerializeField] private GameObject uniqueDrop = null;
+    private int dropCount;
+    protected override void Start()
     {
-        max_hp = 3f;
-        current_hp = max_hp;
+        base.Start();
+        dropCount = drops.Length;
     }
     public override void OnDeath()
     {
-
-        int drop = Random.Range(0, 5);
-        if (drop == 0)
+        if (uniqueDrop != null)
         {
-            Instantiate(rupee, transform.position, Quaternion.identity);
+            Instantiate(uniqueDrop, transform.position, Quaternion.identity);
         }
-        else if (drop == 1)
+        else
         {
-            Instantiate(heart, transform.position, Quaternion.identity);
+            int drop = Random.Range(0, 2 * dropCount);
+            if (drop < dropCount)
+            {
+                Instantiate(drops[drop], transform.position, Quaternion.identity);
+            }
         }
         gameObject.SetActive(false);
     }
@@ -35,6 +38,7 @@ public class EnemyHealthComponent : HealthComponent
 
             // deal damage to enemy (self)
             DealDamage(item.Damage);
+            gameObject.GetComponent<EnemyBehaviorComponent>().Knockback();
         }
     }
 }

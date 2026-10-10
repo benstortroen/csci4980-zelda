@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] public float max_hp = 5;
-    public float current_hp;
+    protected float current_hp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
         current_hp = this.max_hp;
     }
@@ -27,6 +27,11 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
+    public virtual float GetHP()
+    {
+        return current_hp;
+    }
+
     public virtual void OnDeath()
     {
         Debug.Log("gameObject died");
@@ -41,5 +46,10 @@ public class HealthComponent : MonoBehaviour
     public bool IsFull()
     {
         return current_hp == max_hp;
+    }
+    
+    public bool IsDead()
+    {
+        return current_hp <= 0;
     }
 }

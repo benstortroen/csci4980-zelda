@@ -24,7 +24,8 @@ public class Display : MonoBehaviour
         {
             temp_text += "Rupees: ";
             temp_text += inventory.GetRupees().ToString();
-            temp_text += "     Health: ";
+            temp_text += "   Keys: " + inventory.GetKeys().ToString();
+            temp_text += "   Health: ";
             temp_text += health.GetHealth() + "/" + health.max_hp;
             temp_text += "\nMain Item: " + itemManager.getMainItemName();
             temp_text += "     Alt Item: " + itemManager.getAltItemName();
