@@ -42,7 +42,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
             float new_d;
             do
             {
-                new_d = UnityEngine.Random.Range(0, 8) * 90f;
+                new_d = UnityEngine.Random.Range(0, 4) * 90f;
             } while (new_d == -direction);
             direction = new_d;
 
@@ -67,6 +67,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
         Vector2 vel = Quaternion.Euler(0, 0, ang) * Vector2.right;
         vel *= spd;
         rb.linearVelocity = vel;
+        Debug.Log("Seting Move");
     }
 
     protected void StopMovement()
@@ -77,6 +78,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
     // Inflict damage to player
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        StopMovement();
         // Debug.Log("Collision");
         moving = false;
         GameObject other = collision.gameObject;
@@ -149,6 +151,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
 
     public void Knockback()
     {
+        Debug.Log("Knockback");
         startPos = transform.position;
         distance = knockbackDist;
         direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());

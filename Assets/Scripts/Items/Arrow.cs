@@ -23,10 +23,10 @@ public class Arrow : MonoBehaviour, IItem
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Arrow hit something");
         if (!collision.isTrigger)
         {
             gameObject.SetActive(false);
         }
-        
     }
 }

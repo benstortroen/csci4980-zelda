@@ -11,7 +11,6 @@ public class ArrowKeyMovement : MonoBehaviour
 
     [SerializeField] private float movement_speed = 4;
 
-    private bool knockbackMode = false;
     private Vector2 kBStart;
 
     [SerializeField] float knockbackSpeed = 10;
@@ -29,7 +28,7 @@ public class ArrowKeyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!knockbackMode)
+        if (!stateParameters.GetKnockbackMode())
         {
             Vector2 current_input = GetInput();
             // Align player position with grid
@@ -51,7 +50,6 @@ public class ArrowKeyMovement : MonoBehaviour
             float offset = Math.Abs(((Vector2)transform.position - kBStart).magnitude);
             if (offset >= knockbackDist)
             {
-                knockbackMode = false;
                 stateParameters.SetKnockbackMode(false);
             }
         }
@@ -59,12 +57,19 @@ public class ArrowKeyMovement : MonoBehaviour
 
     public void Knockback(Vector2 dir)
     {
-        if (!knockbackMode)
+        if (!stateParameters.GetKnockbackMode())
         {
-            knockbackMode = true;
             stateParameters.SetKnockbackMode(true);
             rb.linearVelocity = dir * knockbackSpeed;
             kBStart = transform.position;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            stateParameters.SetKnockbackMode(false);
         }
     }
 

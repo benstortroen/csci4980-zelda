@@ -76,6 +76,11 @@ public class EvilBoomerangProjectile : MonoBehaviour
             // start coroutine to set moving to true after 2 seconds
         }
 
+        else if (collision.CompareTag("Wall"))
+        {
+            tracking_target = true;
+        }
+
 
     }
 }
