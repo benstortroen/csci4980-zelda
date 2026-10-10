@@ -264325,7 +264325,7 @@ GameObject:
   - component: {fileID: 2085827825}
   - component: {fileID: 2085827827}
   - component: {fileID: 2085827829}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -264534,6 +264534,7 @@ MonoBehaviour:
   alt_items_prefab:
   - {fileID: 1680387595677256656, guid: 1451b1037f6ac4801a2a29b98105e10e, type: 3}
   - {fileID: 6320981078186043038, guid: 8c57e0645ec60487e97838d6e4c39ddb, type: 3}
+  - {fileID: 709152808334349274, guid: d6eeccc43417b4a769ce067871ce7e88, type: 3}
 --- !u!114 &2085827822
 MonoBehaviour:
   m_ObjectHideFlags: 0

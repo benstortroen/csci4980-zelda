@@ -43,6 +43,11 @@ public class HealthComponent : MonoBehaviour
         return current_hp;
     }
 
+    public bool IsFull()
+    {
+        return current_hp == max_hp;
+    }
+    
     public bool IsDead()
     {
         return current_hp <= 0;
