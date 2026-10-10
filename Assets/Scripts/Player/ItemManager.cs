@@ -80,7 +80,7 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log("Swapped alt item");
             alt_index++;
-            if (alt_index >= alt_items_countgi) alt_index = 0;
+            if (alt_index >= alt_items_count) alt_index = 0;
             // Swap alt item
             alt_item.SetActive(false);
             alt_item = alt_items[alt_index];
