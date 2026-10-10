@@ -7,7 +7,7 @@ public class HealthComponent : MonoBehaviour
     protected float current_hp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
         current_hp = this.max_hp;
     }
@@ -41,5 +41,10 @@ public class HealthComponent : MonoBehaviour
     public float GetHealth()
     {
         return current_hp;
+    }
+
+    public bool IsDead()
+    {
+        return current_hp <= 0;
     }
 }

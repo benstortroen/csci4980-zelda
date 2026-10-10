@@ -3,24 +3,19 @@ using UnityEngine;
 public class EnemyHealthComponent : HealthComponent
 {
 
-    [SerializeField] private GameObject rupee;
-    [SerializeField] private GameObject heart;
-    void Start()
+    [SerializeField] private GameObject[] drops;
+    private int dropCount;
+    protected override void Start()
     {
-        max_hp = 3f;
-        current_hp = max_hp;
+        base.Start();
+        dropCount = drops.Length;
     }
     public override void OnDeath()
     {
-
-        int drop = Random.Range(0, 5);
-        if (drop == 0)
+        int drop = Random.Range(0, 2 * dropCount);
+        if (drop < dropCount)
         {
-            Instantiate(rupee, transform.position, Quaternion.identity);
-        }
-        else if (drop == 1)
-        {
-            Instantiate(heart, transform.position, Quaternion.identity);
+            Instantiate(drops[drop], transform.position, Quaternion.identity);
         }
         gameObject.SetActive(false);
     }

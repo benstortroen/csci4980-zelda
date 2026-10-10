@@ -28,8 +28,7 @@ public class SpikeTrapMovement : EnemyBehaviorComponent
         if (state == State.Idle)
         {
             StopMovement();
-            if (player.transform.position.x < roomPos.position.x + 16 && player.transform.position.x > roomPos.position.x
-                && player.transform.position.y < roomPos.position.y + 11 && player.transform.position.y > roomPos.position.y)
+            if (PlayerInRoom())
             {
                 int alignment = AlignedToPlayer();
                 // Debug.Log("Idle");

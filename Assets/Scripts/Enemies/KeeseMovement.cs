@@ -16,7 +16,7 @@ public class KeeseMovement : EnemyBehaviorComponent
     // Update is called once per frame
     void Update()
     {
-        if (!moving)
+        if (!moving && PlayerInRoom())
         {
             // Debug.Log("Moving");
             SnapToGrid();
@@ -25,7 +25,7 @@ public class KeeseMovement : EnemyBehaviorComponent
             do
             {
                 new_d = UnityEngine.Random.Range(0, 8) * 45f;
-            } while (new_d == direction);
+            } while (new_d == -direction);
             direction = new_d;
             if (new_d % 90 != 0)
             {

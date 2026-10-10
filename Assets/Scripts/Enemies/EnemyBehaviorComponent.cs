@@ -15,6 +15,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
 
     public float damage = 0.5f;
 
+    protected Transform roomTransform;
 
 
     public float speed = 2f;
@@ -24,12 +25,13 @@ public class EnemyBehaviorComponent : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SnapToGrid();
         startPos = (Vector2)transform.position;
+        roomTransform = transform.parent != null ? transform.parent : null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!moving)
+        if (!moving && PlayerInRoom())
         {
             // Debug.Log("Moving");
             SnapToGrid();
@@ -38,7 +40,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
             do
             {
                 new_d = UnityEngine.Random.Range(0, 8) * 90f;
-            } while (new_d == direction);
+            } while (new_d == -direction);
             direction = new_d;
 
             distance = UnityEngine.Random.Range(1, 8);
@@ -50,8 +52,10 @@ public class EnemyBehaviorComponent : MonoBehaviour
             float offset = Math.Abs(((Vector2)transform.position - startPos).magnitude);
             if (offset >= distance || (offset >= 2 && AlignedToPlayer() != -1))
             {
+                StopMovement();
                 SnapToGrid();
                 moving = false;
+                Excecute();
             }
         }
     }
@@ -133,4 +137,12 @@ public class EnemyBehaviorComponent : MonoBehaviour
         // }
         // return false;
     }
+
+    protected bool PlayerInRoom()
+    {
+        return (player.transform.position.x <= roomTransform.position.x + 16 && player.transform.position.x > roomTransform.position.x
+                && player.transform.position.y <= roomTransform.position.y + 11 && player.transform.position.y > roomTransform.position.y);
+    }
+
+    protected virtual void Excecute() { }
 }
