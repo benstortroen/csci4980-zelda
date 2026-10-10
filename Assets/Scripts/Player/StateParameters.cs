@@ -12,6 +12,8 @@ public class StateParameters : MonoBehaviour
     private bool isMoving = false;
     private bool isAttacking = false;
 
+    private bool knockbackMode = false;
+
 
 
     // Facing Direction
@@ -50,6 +52,15 @@ public class StateParameters : MonoBehaviour
         return isAttacking;
     }
 
-    
+    // Knockback Mode
+    public void SetKnockbackMode(bool _knockbackMode)
+    {
+        knockbackMode = _knockbackMode;
+    }
+
+    public bool GetKnockbackMode()
+    {
+        return knockbackMode;
+    }
 
 }

@@ -12,8 +12,8 @@ public class EnemyBehaviorComponent : MonoBehaviour
     protected float direction = 0;
     protected float distance = 0;
 
-    [SerializeField] protected float KnockBackSpeed = 4f;
-    [SerializeField] protected float KnockBackDist = 3f;
+    [SerializeField] protected float knockbackSpeed = 4f;
+    [SerializeField] protected float knockbackDist = 3f;
     protected Vector2 startPos;
 
     public float damage = 0.5f;
@@ -84,6 +84,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
         if (other.tag == "Player")
         {
             player.GetComponent<HealthComponent>().DealDamage(damage);
+            player.GetComponent<ArrowKeyMovement>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);
         }
         else if (other.tag == "Wall")
         {
@@ -149,9 +150,9 @@ public class EnemyBehaviorComponent : MonoBehaviour
     public void Knockback()
     {
         startPos = transform.position;
-        distance = KnockBackDist;
+        distance = knockbackDist;
         direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
-        Move(direction, KnockBackSpeed);
+        Move(direction, knockbackSpeed);
         moving = true;
     }
 
