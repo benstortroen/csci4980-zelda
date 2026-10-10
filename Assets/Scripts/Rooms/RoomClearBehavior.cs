@@ -8,18 +8,23 @@ public class RoomClearBehavior : MonoBehaviour
     [SerializeField] private GameObject loot;
     [SerializeField] private Transform lootSpawnPoint;
 
-    private bool cleared = false;
+    private bool cleared = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemies = new List<GameObject>();
-        foreach (Transform child in transform)
+        if (loot != null)
         {
-            if (child.CompareTag("enemy"))
+            enemies = new List<GameObject>();
+            foreach (Transform child in transform)
             {
-                enemies.Add(child.gameObject);
+                if (child.CompareTag("enemy"))
+                {
+                    cleared = false;
+                    enemies.Add(child.gameObject);
+                }
             }
         }
+
     }
 
     // Update is called once per frame
@@ -27,15 +32,17 @@ public class RoomClearBehavior : MonoBehaviour
     {
         if (!cleared)
         {
-            foreach (GameObject enemy in enemies)
+
+            for (int i = enemies.Count - 1; i >= 0; i--)
             {
-                if (enemy.GetComponent<EnemyHealthComponent>().IsDead())
+                if (enemies[i].GetComponent<EnemyHealthComponent>().IsDead())
                 {
-                    enemies.Remove(enemy);
-                    Destroy(enemy);
+
+                    Destroy(enemies[i]);
+                    enemies.RemoveAt(i);
                 }
             }
-            if (enemies.Count == 0)
+            if (enemies.Count <= 0)
             {
                 cleared = true;
                 Instantiate(loot, lootSpawnPoint.position, Quaternion.identity);

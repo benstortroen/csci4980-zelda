@@ -11,6 +11,9 @@ public class EnemyBehaviorComponent : MonoBehaviour
     protected bool moving = false;
     protected float direction = 0;
     protected float distance = 0;
+
+    [SerializeField] protected float KnockBackSpeed = 4f;
+    [SerializeField] protected float KnockBackDist = 3f;
     protected Vector2 startPos;
 
     public float damage = 0.5f;
@@ -55,7 +58,6 @@ public class EnemyBehaviorComponent : MonoBehaviour
                 StopMovement();
                 SnapToGrid();
                 moving = false;
-                Excecute();
             }
         }
     }
@@ -144,5 +146,12 @@ public class EnemyBehaviorComponent : MonoBehaviour
                 && player.transform.position.y <= roomTransform.position.y + 11 && player.transform.position.y > roomTransform.position.y);
     }
 
-    protected virtual void Excecute() { }
+    protected void KnockBack(float dir)
+    {
+        startPos = transform.position;
+        distance = KnockBackDist;
+        Move(dir, KnockBackSpeed);
+        moving = true;
+    }
+
 }

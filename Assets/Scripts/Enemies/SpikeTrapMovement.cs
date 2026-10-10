@@ -11,8 +11,6 @@ public class SpikeTrapMovement : EnemyBehaviorComponent
         Idle
     };
 
-    [SerializeField] Transform roomPos;
-
     private State state = State.Idle;
     public float resetSpeed = 2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
