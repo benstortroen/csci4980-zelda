@@ -3,6 +3,7 @@ using UnityEngine;
 public class PickupCollector : MonoBehaviour
 {
     private Inventory inventory;
+    private ItemManager itemManager;
     private HealthComponent healthComponent;
     public AudioClip rupee_collection_sound_clip;
 
@@ -13,7 +14,7 @@ public class PickupCollector : MonoBehaviour
         {
             Debug.Log("WARNING: GameObject with Collector component is lacking an Inventory Component");
         }
-
+        itemManager = GetComponent<ItemManager>();
         healthComponent = GetComponent<HealthComponent>();
     }
 
@@ -49,6 +50,11 @@ public class PickupCollector : MonoBehaviour
                 inventory.AddKeys(1);
             }
             Destroy(other);
+        }
+
+        if (other.tag == "item")
+        {
+            itemManager.AddItem(other);
         }
     }
 }
