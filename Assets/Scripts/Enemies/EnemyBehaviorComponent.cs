@@ -146,11 +146,12 @@ public class EnemyBehaviorComponent : MonoBehaviour
                 && player.transform.position.y <= roomTransform.position.y + 11 && player.transform.position.y > roomTransform.position.y);
     }
 
-    protected void KnockBack(float dir)
+    public void Knockback()
     {
         startPos = transform.position;
         distance = KnockBackDist;
-        Move(dir, KnockBackSpeed);
+        direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
+        Move(direction, KnockBackSpeed);
         moving = true;
     }
 

@@ -38,6 +38,7 @@ public class EnemyHealthComponent : HealthComponent
 
             // deal damage to enemy (self)
             DealDamage(item.Damage);
+            gameObject.GetComponent<EnemyBehaviorComponent>().Knockback();
         }
     }
 }
