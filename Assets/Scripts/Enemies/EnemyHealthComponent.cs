@@ -31,7 +31,7 @@ public class EnemyHealthComponent : HealthComponent
     // Take damage from item
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "item")
+        if (collision.tag == "item" && !iWindowActive)
         {
             // get item reference
             IItem item = collision.GetComponent<IItem>();

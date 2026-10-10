@@ -85,7 +85,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
         moving = false;
         GameObject other = collision.gameObject;
 
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !player.GetComponent<HealthComponent>().IsInvulnerable())
         {
             player.GetComponent<HealthComponent>().DealDamage(damage);
             player.GetComponent<ArrowKeyMovement>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);

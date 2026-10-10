@@ -4,7 +4,14 @@ using UnityEngine.SceneManagement;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] public float max_hp = 5;
+
+    [SerializeField] private Sprite iWindowSprite;
     protected float current_hp;
+
+    public float iWindow = 0.75f;
+    private float iWindowStart = 0.0f;
+
+    protected bool iWindowActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -20,10 +27,27 @@ public class HealthComponent : MonoBehaviour
 
     public virtual void DealDamage(float damage)
     {
-        current_hp -= damage;
-        if (current_hp <= 0)
+        if (!iWindowActive)
         {
-            OnDeath();
+            current_hp -= damage;
+            if (current_hp <= 0)
+            {
+                OnDeath();
+            }
+            iWindowStart = Time.time;
+            iWindowActive = true;
+        }
+
+    }
+
+    protected virtual void Update()
+    {
+        if (iWindowActive)
+        {
+            if (Time.time - iWindowStart > iWindow)
+            {
+                iWindowActive = false;
+            }
         }
     }
 
@@ -47,9 +71,14 @@ public class HealthComponent : MonoBehaviour
     {
         return current_hp == max_hp;
     }
-    
+
     public bool IsDead()
     {
         return current_hp <= 0;
+    }
+
+    public bool IsInvulnerable()
+    {
+        return iWindowActive;
     }
 }

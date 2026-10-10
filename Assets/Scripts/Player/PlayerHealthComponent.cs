@@ -24,7 +24,7 @@ public class PlayerHealthComponent : HealthComponent
 
     public override void DealDamage(float d)
     {
-        if (!CheatsController.godMode && !stateParameters.GetKnockbackMode())
+        if (!CheatsController.godMode && !iWindowActive)
         {
             base.DealDamage(d);
         }
