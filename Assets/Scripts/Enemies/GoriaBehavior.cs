@@ -42,7 +42,7 @@ public class GoriaBehavior : EnemyBehaviorComponent
     {
         hasBoomerang = false;
         Vector2 new_position = transform.position + (Quaternion.Euler(0, 0, direction) * Vector2.right);
-        EvilBoomerangProjectile evilBoomerangProjectile = Instantiate(boomerangPrefab, new_position, Quaternion.identity).GetComponent<EvilBoomerangProjectile>();
+        EvilBoomerangProjectile evilBoomerangProjectile = Instantiate(boomerangPrefab, new_position, Quaternion.identity, gameObject.transform).GetComponent<EvilBoomerangProjectile>();
         evilBoomerangProjectile.SetOwner(gameObject);
         evilBoomerangProjectile.SetDirection(Quaternion.Euler(0, 0, direction) * Vector2.right);
     }
