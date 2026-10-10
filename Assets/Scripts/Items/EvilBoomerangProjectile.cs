@@ -1,29 +1,30 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BoomerangProjectile : MonoBehaviour, IItem
+public class EvilBoomerangProjectile : MonoBehaviour
 {
     // stats
-    public int Damage { get; set; } = 1;
-    public string ItemName { get; set; } = "Boomerange";
+    public int Damage = 1;
     [SerializeField] private float move_speed = 5.0f;
     private Vector2 direction;
 
-    // player
-    private Transform player_transform;
-    public Boomerang boomerang;
+    private GameObject owner;
 
     // track distance thrown
     private Vector3 initPos;
     private float maxThrowDistance = 4.0f;
-    private bool tracking_player = false;
+    private bool tracking_target = false;
 
     public void UseItem(Vector3 position, Vector2 direction) { }
 
     private void Start()
     {
         initPos = transform.position;
-        player_transform = GameObject.FindWithTag("Player").transform;
+    }
+
+    public void SetOwner(GameObject target)
+    {
+        owner = target;
     }
 
     private void Update()
@@ -33,14 +34,14 @@ public class BoomerangProjectile : MonoBehaviour, IItem
         // if boomerang has traveled beyond the max throw distance
         if ((transform.position - initPos).magnitude > maxThrowDistance)
         {
-            tracking_player = true;
+            tracking_target = true;
         }
 
-        // move boomerang back to player
-        if (tracking_player)
+        // move boomerang back to target
+        if (tracking_target)
         {
-            Vector3 towards_player = (player_transform.position - transform.position).normalized;
-            SetDirection(towards_player);
+            Vector3 towards_target = (owner.transform.position - transform.position).normalized;
+            SetDirection(towards_target);
         }
     }
 
@@ -51,22 +52,23 @@ public class BoomerangProjectile : MonoBehaviour, IItem
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject == owner)
         {
-            // boomerang returns to player
-            if (tracking_player)
+            // boomerang returns to goria
+            if (tracking_target)
             {
-                Debug.Log("Boomerang returned to player");
-                boomerang.boomerang_available = true;
+                Debug.Log("Boomerang returned to target");
+                owner.GetComponent<GoriaBehavior>().hasBoomerang = true;
                 gameObject.SetActive(false);
             }
         }
 
         // boomerang hits enemy
         // go back to player
-        else if (collision.tag == "enemy")
+        else if (collision.tag == "Player")
         {
-            tracking_player = true;
+            tracking_target = true;
+            collision.gameObject.GetComponent<PlayerHealthComponent>().DealDamage(Damage);
 
             // TODO: stun enemy on hit
             // check collision tag for enemy

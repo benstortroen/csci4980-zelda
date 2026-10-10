@@ -4,6 +4,7 @@ public class EnemyHealthComponent : HealthComponent
 {
 
     [SerializeField] private GameObject[] drops;
+    [SerializeField] private GameObject uniqueDrop = null;
     private int dropCount;
     protected override void Start()
     {
@@ -12,10 +13,17 @@ public class EnemyHealthComponent : HealthComponent
     }
     public override void OnDeath()
     {
-        int drop = Random.Range(0, 2 * dropCount);
-        if (drop < dropCount)
+        if (uniqueDrop != null)
         {
-            Instantiate(drops[drop], transform.position, Quaternion.identity);
+            Instantiate(uniqueDrop, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            int drop = Random.Range(0, 2 * dropCount);
+            if (drop < dropCount)
+            {
+                Instantiate(drops[drop], transform.position, Quaternion.identity);
+            }
         }
         gameObject.SetActive(false);
     }
