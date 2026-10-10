@@ -41,6 +41,9 @@ public class ItemManager : MonoBehaviour
     // add new item to alt items array
     public void AddItem(GameObject item)
     {
+        // ignore items the player already holds (e.g. the sword's own trigger touching the player)
+        if (item == main_item || alt_items.Contains(item)) return;
+
         alt_items[alt_items_count] = item;
         alt_items_count += 1;
 
