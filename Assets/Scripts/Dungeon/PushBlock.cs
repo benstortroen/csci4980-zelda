@@ -68,6 +68,11 @@ public class PushBlock : MonoBehaviour
         
     }
 
+    public bool isPushed()
+    {
+        return hasBeenPushed;
+    }
+
 
 
 }
