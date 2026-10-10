@@ -37,4 +37,9 @@ public class HealthComponent : MonoBehaviour
     {
         return current_hp;
     }
+
+    public bool IsFull()
+    {
+        return current_hp == max_hp;
+    }
 }
