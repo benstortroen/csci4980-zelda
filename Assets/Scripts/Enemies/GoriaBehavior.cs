@@ -32,13 +32,13 @@ public class GoriaBehavior : EnemyBehaviorComponent
             float new_d;
             do
             {
-                new_d = UnityEngine.Random.Range(0, 4) * 90f;
+                new_d = UnityEngine.Random.Range(0, directions) * (360f / (float)directions);
             } while (new_d == -direction);
 
             direction = new_d;
             SetSprite(direction);
 
-            distance = UnityEngine.Random.Range(1, 8);
+            distance = UnityEngine.Random.Range(minDistance, maxDistance);
             Move(direction, speed);
             moving = true;
         }
@@ -91,7 +91,7 @@ public class GoriaBehavior : EnemyBehaviorComponent
         float throwDirection;
         do
         {
-            throwDirection = UnityEngine.Random.Range(0, 4) * 90f;
+            throwDirection = UnityEngine.Random.Range(0, directions) * (360f / (float)directions);
         } while (throwDirection == -direction);
         direction = throwDirection;
         SetSprite(direction);

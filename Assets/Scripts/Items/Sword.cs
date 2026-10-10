@@ -15,8 +15,8 @@ public class Sword : MonoBehaviour, IItem
 
     public void UseItem(Vector3 position, Vector2 direction)
     {
-        // enable item
-        gameObject.SetActive(true);
+        gameObject.SetActive(false);
+
 
         // Spawn Sword hitbox
         // rotate item to face dirction
@@ -25,7 +25,6 @@ public class Sword : MonoBehaviour, IItem
         Vector3 new_position = position + new Vector3(direction.x, direction.y, 0);
         transform.position = new_position;
         // disable item
-        StartCoroutine("DisableItem");
 
         // Check if player is max health so projectile should be spawned
         GameObject player = GameObject.FindWithTag("Player");
@@ -39,6 +38,11 @@ public class Sword : MonoBehaviour, IItem
             GameObject projectile = Instantiate(sword_prefab, new_position, transform.rotation);
             projectile.GetComponent<SwordProjecile>().SetDirection(direction);
             projectileLastUsed = Time.time;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            StartCoroutine("DisableItem");
         }
     }
 
