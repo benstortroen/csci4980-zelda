@@ -19,7 +19,5 @@ public class OpenOldManRoom : MonoBehaviour
             doorTile.GetComponent<BoxCollider2D>().isTrigger = true;
             doorTile.GetComponent<SpriteRenderer>().sprite = doorSprite;
         }
-
-        GetComponent<OpenOldManRoom>().enabled = false;
     }
 }

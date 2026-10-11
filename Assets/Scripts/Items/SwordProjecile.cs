@@ -27,7 +27,7 @@ public class SwordProjecile : MonoBehaviour, IItem
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.isTrigger)
+        if (!collision.isTrigger && collision.tag != "Player")
         {
             // play sword animations
             hasHit = true;
