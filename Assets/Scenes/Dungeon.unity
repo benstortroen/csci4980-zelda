@@ -152871,7 +152871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1680387595677256656, guid: 1451b1037f6ac4801a2a29b98105e10e, type: 3}
       propertyPath: m_TagString
-      value: item
+      value: pickup
       objectReference: {fileID: 0}
     - target: {fileID: 4184285516233733399, guid: 1451b1037f6ac4801a2a29b98105e10e, type: 3}
       propertyPath: m_LocalPosition.x

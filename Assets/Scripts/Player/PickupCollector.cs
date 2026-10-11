@@ -52,7 +52,7 @@ public class PickupCollector : MonoBehaviour
             Destroy(other);
         }
 
-        if (other.tag == "item")
+        if (other.tag == "pickup")
         {
             itemManager.AddItem(other);
         }

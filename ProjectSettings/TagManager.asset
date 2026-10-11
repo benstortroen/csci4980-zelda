@@ -11,6 +11,8 @@ TagManager:
   - key
   - locked_door
   - door
+  - Wall
+  - pickup
   layers:
   - Default
   - TransparentFX
