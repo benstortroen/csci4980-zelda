@@ -45,6 +45,7 @@ public class RoomClearBehavior : MonoBehaviour
             if (enemies.Count <= 0)
             {
                 cleared = true;
+                AudioManager.Instance.PlayLevelClear(transform.position);
                 Instantiate(loot, lootSpawnPoint.position, Quaternion.identity);
             }
         }

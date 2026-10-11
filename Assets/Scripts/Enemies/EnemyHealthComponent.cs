@@ -25,6 +25,7 @@ public class EnemyHealthComponent : HealthComponent
                 Instantiate(drops[drop], transform.position, Quaternion.identity);
             }
         }
+        AudioManager.Instance.PlayEnemyDeath(transform.position);
         gameObject.SetActive(false);
     }
 
@@ -39,6 +40,7 @@ public class EnemyHealthComponent : HealthComponent
             // deal damage to enemy (self)
             DealDamage(item.Damage);
             gameObject.GetComponent<EnemyBehaviorComponent>().Knockback();
+            AudioManager.Instance.PlayEnemyHurt(transform.position);
         }
     }
 }

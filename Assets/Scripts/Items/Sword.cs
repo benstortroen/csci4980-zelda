@@ -16,7 +16,7 @@ public class Sword : MonoBehaviour, IItem
     public void UseItem(Vector3 position, Vector2 direction)
     {
         gameObject.SetActive(false);
-
+        AudioManager.Instance.PlayWeaponSword(transform.position);
 
         // Spawn Sword hitbox
         // rotate item to face dirction
