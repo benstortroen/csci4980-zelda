@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnemyBehaviorComponent : MonoBehaviour
 {
 
-    public GameObject player;
+    protected GameObject player;
     protected Rigidbody2D rb;
 
     protected bool moving = false;
     protected float direction = 0;
     protected float distance = 0;
+
+    public bool knockbackImmune = false;
 
     [SerializeField] protected float knockbackSpeed = 4f;
     [SerializeField] protected float knockbackDist = 3f;
@@ -149,11 +151,14 @@ public class EnemyBehaviorComponent : MonoBehaviour
 
     public void Knockback()
     {
-        startPos = transform.position;
-        distance = knockbackDist;
-        direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
-        Move(direction, knockbackSpeed);
-        moving = true;
+        if (!knockbackImmune)
+        {
+            startPos = transform.position;
+            distance = knockbackDist;
+            direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
+            Move(direction, knockbackSpeed);
+            moving = true;
+        }
     }
 
 }
