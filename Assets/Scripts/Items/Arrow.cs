@@ -11,6 +11,11 @@ public class Arrow : MonoBehaviour, IItem
 
     private Vector2 direction;
 
+    private void Start()
+    {
+        AudioManager.Instance.PlayWeaponArrow(transform.position);
+    }
+
     private void Update()
     {
         transform.position += new Vector3(direction.x, direction.y, 0) * move_speed * Time.deltaTime;
@@ -26,7 +31,7 @@ public class Arrow : MonoBehaviour, IItem
         Debug.Log("Arrow hit something");
         if (!collision.isTrigger)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

@@ -31,6 +31,7 @@ public class SwordProjecile : MonoBehaviour, IItem
         {
             // play sword animations
             hasHit = true;
+            AudioManager.Instance.PlayWeaponSwordProjectile(transform.position);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<Animator>().Play("sword_projectile_hit");
             StartCoroutine(DestroyOnFin());

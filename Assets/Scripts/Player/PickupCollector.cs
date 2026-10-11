@@ -5,7 +5,6 @@ public class PickupCollector : MonoBehaviour
     private Inventory inventory;
     private ItemManager itemManager;
     private HealthComponent healthComponent;
-    public AudioClip rupee_collection_sound_clip;
 
     void Start()
     {
@@ -34,13 +33,14 @@ public class PickupCollector : MonoBehaviour
             Destroy(other);
 
             // Play collect noise
-            AudioSource.PlayClipAtPoint(rupee_collection_sound_clip, transform.position);
+            AudioManager.Instance.PlayPickupRupee(transform.position);
         }
 
         if (other.tag == "heart")
         {
             healthComponent.RestoreHealth(1);
             Destroy(other);
+            AudioManager.Instance.PlayPickupGeneric(transform.position);
         }
 
         if (other.tag == "key")
@@ -48,6 +48,7 @@ public class PickupCollector : MonoBehaviour
             if (inventory != null)
             {
                 inventory.AddKeys(1);
+                AudioManager.Instance.PlayPickupGeneric(transform.position);
             }
             Destroy(other);
         }
@@ -55,6 +56,7 @@ public class PickupCollector : MonoBehaviour
         if (other.tag == "pickup")
         {
             itemManager.AddItem(other);
+            AudioManager.Instance.PlayPickupGeneric(transform.position);
         }
     }
 }

@@ -15,6 +15,12 @@ public class Inventory : MonoBehaviour
         rupee_count += num_rupees;
     }
 
+    public void SubtractRupees(int num_rupees)
+    {
+        rupee_count -= num_rupees;
+        if (rupee_count < 0) rupee_count = 0;
+    }
+
     public int GetRupees()
     {
         return rupee_count;

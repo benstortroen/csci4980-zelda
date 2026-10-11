@@ -58,6 +58,7 @@ public class PushBlock : MonoBehaviour
             (canMoveSouth && push_direction == Vector3.down))
         {
             // start coroutine to move block in push direction
+            AudioManager.Instance.PlaySecret(transform.position);
             hasBeenPushed = true;
             Vector3 finalPos = transform.position + push_direction;
             IEnumerator BlockTransition = coroutineUtiilities.moveObjectOverTime(transform, initPos, finalPos, 1.0f);
