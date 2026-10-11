@@ -387,7 +387,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -396,6 +396,28 @@ TextureImporter:
       bones: []
       spriteID: f663f52875b1747ea8e2d0b570f09ee5
       internalID: -610533487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keese1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 201
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c7ded73b9d54ae990af92979ba9055
+      internalID: 2031368067
       vertices: []
       indices: 
       edges: []
@@ -425,6 +447,7 @@ TextureImporter:
       Goria B 3: -928397210
       Goria B 4: -461150003
       Keese (Idle): 99637849
+      Keese1: 2031368067
       Stalfos: 5673006790503200954
       WallMaster: -610533487
   mipmapLimitGroupName: 

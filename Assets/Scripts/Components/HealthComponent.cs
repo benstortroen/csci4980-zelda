@@ -5,17 +5,21 @@ public class HealthComponent : MonoBehaviour
 {
     [SerializeField] public float max_hp = 5;
 
-    [SerializeField] private Sprite iWindowSprite;
+    public float flashRate = 0.2f;
+
+    private SpriteRenderer spriteRenderer;
     protected float current_hp;
 
-    public float iWindow = 0.75f;
+    public float iWindow = 0.4f;
     private float iWindowStart = 0.0f;
 
     protected bool iWindowActive = false;
+    private float flashStartTime = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         current_hp = this.max_hp;
     }
 
@@ -36,6 +40,7 @@ public class HealthComponent : MonoBehaviour
             }
             iWindowStart = Time.time;
             iWindowActive = true;
+            spriteRenderer.color = new Color(255 / 255f, 124 / 255f, 62 / 255f);
         }
 
     }
@@ -44,9 +49,25 @@ public class HealthComponent : MonoBehaviour
     {
         if (iWindowActive)
         {
+            float dt = Time.time - flashStartTime;
+            if (dt < flashRate)
+            {
+                spriteRenderer.color = new Color(255 / 255f, 0 / 255f, 0 / 255f);
+            }
+            else
+            {
+                spriteRenderer.color = new Color(255 / 255f, 181 / 255f, 146 / 255f);
+                if (dt > 2 * flashRate)
+                {
+                    flashStartTime = Time.time;
+                }
+
+            }
+
             if (Time.time - iWindowStart > iWindow)
             {
                 iWindowActive = false;
+                spriteRenderer.color = new Color(1, 1, 1);
             }
         }
     }

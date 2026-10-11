@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1916419512821400196}
   - component: {fileID: -7990302354983952045}
   - component: {fileID: 1669664285664569450}
+  - component: {fileID: 8364690418209372257}
   m_Layer: 0
   m_Name: Aquamentus
   m_TagString: enemy
@@ -208,3 +209,25 @@ MonoBehaviour:
   directions: 2
   projectilePrefab: {fileID: 4076813153928491480, guid: 4a632079ebf8f44d2b264ef4e1f2a5a9, type: 3}
   fireCooldown: 3
+--- !u!95 &8364690418209372257
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5944377173981372763}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08a1453ae396d4ff5adaee96ed89bcf2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

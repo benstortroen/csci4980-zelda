@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3638464361283921460}
   - component: {fileID: 7300510566295717560}
   - component: {fileID: 7410048948658002986}
-  - component: {fileID: 7555877821750012478}
   - component: {fileID: -1720148278537233943}
+  - component: {fileID: 7357042619516448281}
   m_Layer: 0
   m_Name: Keese
   m_TagString: enemy
@@ -183,24 +183,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   max_hp: 0.5
+  iWindowSprite: {fileID: 0}
+  iWindow: 0.75
   drops: []
   uniqueDrop: {fileID: 0}
---- !u!111 &7555877821750012478
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2465363633721332522}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!114 &-1720148278537233943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625b57f036e90460abd9e7acbcf0d30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviorComponent
-  player: {fileID: 0}
+  knockbackImmune: 0
   knockbackSpeed: 4
   knockbackDist: 3
   damage: 0.5
@@ -221,3 +207,25 @@ MonoBehaviour:
   minDistance: 1
   maxDistance: 4
   directions: 8
+--- !u!95 &7357042619516448281
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465363633721332522}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 837b9441cc3e243c998c919e4ad0dd87, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
