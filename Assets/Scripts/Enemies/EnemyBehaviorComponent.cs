@@ -2,8 +2,12 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBehaviorComponent : MonoBehaviour
+public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
 {
+
+    public bool recieved { get; set; } = false;
+
+    private float lastTeleport = 0.0f;
 
     public GameObject player;
     protected Rigidbody2D rb;
@@ -60,6 +64,8 @@ public class EnemyBehaviorComponent : MonoBehaviour
                 moving = false;
             }
         }
+
+        CheckRecieved();
     }
 
     protected void Move(float ang, float spd)
@@ -77,6 +83,11 @@ public class EnemyBehaviorComponent : MonoBehaviour
     // Inflict damage to player
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.tag == "Portal")
+        {
+            return;
+        }
         // Debug.Log("Collision");
         moving = false;
         GameObject other = collision.gameObject;
@@ -154,6 +165,28 @@ public class EnemyBehaviorComponent : MonoBehaviour
         direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
         Move(direction, knockbackSpeed);
         moving = true;
+    }
+
+    public void TeleportTo(Transform t, Vector2 dir)
+    {
+        transform.position = t.position;
+        direction = Vector2.SignedAngle(Vector2.right, dir);
+        startPos = (Vector2)transform.position;
+        recieved = true;
+        lastTeleport = Time.time;
+        Move(direction, speed);
+    }
+
+    protected void CheckRecieved()
+    {
+        if (Time.time - lastTeleport > 1)
+        {
+            recieved = false;
+        }
+        else
+        {
+            recieved = true;
+        }
     }
 
 }

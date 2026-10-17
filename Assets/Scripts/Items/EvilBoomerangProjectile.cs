@@ -1,8 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EvilBoomerangProjectile : MonoBehaviour
+public class EvilBoomerangProjectile : MonoBehaviour, ITeleportable
 {
+
+    public bool recieved { get; set; } = false;
+
     // stats
     public int Damage = 1;
     [SerializeField] private float move_speed = 5.0f;
@@ -48,6 +51,7 @@ public class EvilBoomerangProjectile : MonoBehaviour
     public void SetDirection(Vector2 dir)
     {
         direction = dir;
+        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -76,6 +80,13 @@ public class EvilBoomerangProjectile : MonoBehaviour
             // start coroutine to set moving to true after 2 seconds
         }
 
+    }
 
+    public void TeleportTo(Transform pos, Vector2 dir)
+    {
+        SetDirection(dir);
+        transform.position = pos.position;
+        initPos = transform.position;
+        recieved = true;
     }
 }

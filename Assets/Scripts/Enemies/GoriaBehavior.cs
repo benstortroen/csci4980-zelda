@@ -36,6 +36,8 @@ public class GoriaBehavior : EnemyBehaviorComponent
                 ThrowBoomerang();
             }
         }
+
+        CheckRecieved();
     }
 
     private void ThrowBoomerang()
