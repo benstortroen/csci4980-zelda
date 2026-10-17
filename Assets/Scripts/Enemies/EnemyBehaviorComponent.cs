@@ -84,7 +84,7 @@ public class EnemyBehaviorComponent : MonoBehaviour
         if (other.tag == "Player")
         {
             player.GetComponent<HealthComponent>().DealDamage(damage);
-            player.GetComponent<ArrowKeyMovement>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);
+            player.GetComponent<PlayerController>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);
         }
         else if (other.tag == "Wall")
         {

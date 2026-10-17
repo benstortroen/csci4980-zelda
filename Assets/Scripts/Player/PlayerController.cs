@@ -1,11 +1,14 @@
+
 using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class ArrowKeyMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITeleportable
 {
+
+    public bool recieved { get; set; }
     Rigidbody2D rb;
     StateParameters stateParameters;
 
@@ -17,6 +20,8 @@ public class ArrowKeyMovement : MonoBehaviour
     [SerializeField] float knockbackSpeed = 10;
     [SerializeField] float knockbackDist = 2;
 
+
+    private float lastTeleport = 0.0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,6 +59,11 @@ public class ArrowKeyMovement : MonoBehaviour
                 knockbackMode = false;
                 stateParameters.SetKnockbackMode(false);
             }
+        }
+
+        if (Time.time - lastTeleport > 1)
+        {
+            recieved = false;
         }
     }
 
@@ -133,5 +143,11 @@ public class ArrowKeyMovement : MonoBehaviour
         }
 
         transform.position = temp_pos;
+    }
+
+    public void TeleportTo(Transform t, Vector2 dir)
+    {
+        transform.position = t.position;
+        lastTeleport = Time.time;
     }
 }

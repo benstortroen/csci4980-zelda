@@ -6,13 +6,13 @@ public class PlayerHealthComponent : HealthComponent
 {
 
     StateParameters stateParameters;
-    ArrowKeyMovement movement;
+    PlayerController movement;
 
     protected override void Start()
     {
         base.Start();
         stateParameters = GetComponent<StateParameters>();
-        movement = GetComponent<ArrowKeyMovement>();
+        movement = GetComponent<PlayerController>();
     }
 
     public override void OnDeath()

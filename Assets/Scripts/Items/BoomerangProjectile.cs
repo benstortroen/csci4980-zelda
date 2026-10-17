@@ -47,6 +47,7 @@ public class BoomerangProjectile : MonoBehaviour, IItem
     public void SetDirection(Vector2 dir)
     {
         direction = dir;
+        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
