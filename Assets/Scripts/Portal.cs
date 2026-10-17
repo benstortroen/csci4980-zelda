@@ -4,7 +4,7 @@ public class Portal : MonoBehaviour
 {
 
     // Reciever portal
-    [SerializeField] Portal partnerPortal;
+    [SerializeField] Portal recievingPortal;
 
     //The unit vector of the direction the portal is facing
     Vector2 direction;
@@ -63,7 +63,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<ITeleportable>(out var obj) && !obj.recieved)
         {
-            partnerPortal.Recieve(obj);
+            recievingPortal.Recieve(obj);
         }
     }
 }
