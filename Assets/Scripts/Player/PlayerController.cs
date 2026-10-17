@@ -149,5 +149,6 @@ public class PlayerController : MonoBehaviour, ITeleportable
     {
         transform.position = t.position;
         lastTeleport = Time.time;
+        recieved = true;
     }
 }

@@ -1,11 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BoomerangProjectile : MonoBehaviour, IItem
+public class BoomerangProjectile : MonoBehaviour, IItem, ITeleportable
 {
     // stats
     public int Damage { get; set; } = 1;
     public string ItemName { get; set; } = "Boomerange";
+
+    public bool recieved { get; set; } = false;
     [SerializeField] private float move_speed = 5.0f;
     private Vector2 direction;
 
@@ -75,6 +77,13 @@ public class BoomerangProjectile : MonoBehaviour, IItem
             // start coroutine to set moving to true after 2 seconds
         }
 
+    }
 
+    public void TeleportTo(Transform pos, Vector2 dir)
+    {
+        SetDirection(dir);
+        transform.position = pos.position;
+        initPos = pos.position;
+        recieved = true;
     }
 }

@@ -53,7 +53,6 @@ public class Portal : MonoBehaviour
 
     public void Recieve(ITeleportable obj)
     {
-        obj.recieved = true;
         obj.TeleportTo(transform, direction);
     }
 
