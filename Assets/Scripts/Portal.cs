@@ -51,6 +51,9 @@ public class Portal : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, snappedZ);
     }
 
+
+    //All logic will be done on the recieving end or inside the
+    // teleported object itself
     public void Recieve(ITeleportable obj)
     {
         obj.TeleportTo(transform, direction);
