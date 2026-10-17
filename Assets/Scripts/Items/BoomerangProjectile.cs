@@ -36,6 +36,7 @@ public class BoomerangProjectile : MonoBehaviour, IItem, ITeleportable
         if ((transform.position - initPos).magnitude > maxThrowDistance)
         {
             tracking_player = true;
+            recieved = true;
         }
 
         // move boomerang back to player
@@ -70,6 +71,7 @@ public class BoomerangProjectile : MonoBehaviour, IItem, ITeleportable
         else if (collision.tag == "enemy")
         {
             tracking_player = true;
+            recieved = true;
 
             // TODO: stun enemy on hit
             // check collision tag for enemy
@@ -84,6 +86,5 @@ public class BoomerangProjectile : MonoBehaviour, IItem, ITeleportable
         SetDirection(dir);
         transform.position = pos.position;
         initPos = pos.position;
-        recieved = true;
     }
 }

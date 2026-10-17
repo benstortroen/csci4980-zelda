@@ -38,6 +38,7 @@ public class EvilBoomerangProjectile : MonoBehaviour, ITeleportable
         if ((transform.position - initPos).magnitude > maxThrowDistance)
         {
             tracking_target = true;
+            recieved = true;
         }
 
         // move boomerang back to target
@@ -72,6 +73,7 @@ public class EvilBoomerangProjectile : MonoBehaviour, ITeleportable
         else if (collision.tag == "Player")
         {
             tracking_target = true;
+            recieved = true;
             collision.gameObject.GetComponent<PlayerHealthComponent>().DealDamage(Damage);
 
             // TODO: stun enemy on hit
@@ -87,6 +89,6 @@ public class EvilBoomerangProjectile : MonoBehaviour, ITeleportable
         SetDirection(dir);
         transform.position = pos.position;
         initPos = transform.position;
-        recieved = true;
+        // recieved = true;
     }
 }
