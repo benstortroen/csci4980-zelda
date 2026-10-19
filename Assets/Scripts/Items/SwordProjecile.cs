@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class SwordProjecile : MonoBehaviour, IItem
+public class SwordProjecile : MonoBehaviour, IItem, ITeleportable
 {
+
+    public bool recieved { get; set; } = false;
     public int Damage { get; set; } = 1;
     public string ItemName { get; set; } = "SwordProjectile";
     private bool hasHit = false;
@@ -15,19 +17,21 @@ public class SwordProjecile : MonoBehaviour, IItem
 
     private void Update()
     {
-       if (!hasHit) {
-        transform.position += new Vector3(direction.x, direction.y, 0) * move_speed * Time.deltaTime;
-       }
+        if (!hasHit)
+        {
+            transform.position += new Vector3(direction.x, direction.y, 0) * move_speed * Time.deltaTime;
+        }
     }
 
     public void SetDirection(Vector2 dir)
     {
         direction = dir;
+        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.isTrigger && collision.tag != "Player")
+        if (collision.CompareTag("enemy") && collision.tag != "Player")
         {
             // play sword animations
             hasHit = true;
@@ -35,9 +39,8 @@ public class SwordProjecile : MonoBehaviour, IItem
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<Animator>().Play("sword_projectile_hit");
             StartCoroutine(DestroyOnFin());
-            
         }
-        
+
     }
 
     // destroy object when projectile hit animation finishes 
@@ -46,5 +49,11 @@ public class SwordProjecile : MonoBehaviour, IItem
         yield return null;
         yield return new WaitForSeconds(0.24f);
         Destroy(gameObject);
+    }
+
+    public void TeleportTo(Transform pos, Vector2 dir)
+    {
+        transform.position = pos.position;
+        SetDirection(dir);
     }
 }
