@@ -19,7 +19,7 @@ public class EnergyBallBehavior : MonoBehaviour
         {
             GameObject player = collision.gameObject;
             player.GetComponent<HealthComponent>().DealDamage(damage);
-            player.GetComponent<ArrowKeyMovement>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);
+            player.GetComponent<PlayerController>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);
         }
         gameObject.SetActive(false);
     }

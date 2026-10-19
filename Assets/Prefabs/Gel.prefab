@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9132204776807083844}
   - component: {fileID: 4432236377957951020}
   - component: {fileID: 3045534632244621215}
-  - component: {fileID: 3134540818138070307}
+  - component: {fileID: 9217641294477961622}
   m_Layer: 0
   m_Name: Gel
   m_TagString: enemy
@@ -207,7 +207,7 @@ MonoBehaviour:
   iWindow: 0.4
   drops: []
   uniqueDrop: {fileID: 0}
---- !u!95 &3134540818138070307
+--- !u!95 &9217641294477961622
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ Animator:
   m_GameObject: {fileID: 3242056397663906114}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 72dd5447b77a94a9bbfc53339001ad39, type: 2}
+  m_Controller: {fileID: 9100000, guid: d5cb51ec148094606a6f91c087afdf31, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
