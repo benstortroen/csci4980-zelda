@@ -12,7 +12,7 @@ public class CheatsController : MonoBehaviour
         {
             toggleGodMode();
         }
-        else if (Keyboard.current.digit4Key.wasPressedThisFrame)
+        else if (Keyboard.current.digit4Key.wasPressedThisFrame || Keyboard.current.digit3Key.wasPressedThisFrame)
         {
             if (SceneManager.GetActiveScene().name == "SecretScene")
             {
