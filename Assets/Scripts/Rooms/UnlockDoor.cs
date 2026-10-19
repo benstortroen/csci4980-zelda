@@ -20,6 +20,7 @@ public class UnlockDoor : MonoBehaviour
             if (inventory.TryKey() || CheatsController.godMode)
             {
                 Debug.Log("Unlocking door...");
+                AudioManager.Instance.PlayDoorOpen(transform.position);
                 LockedDoor lockedDoor = other.GetComponent<LockedDoor>();
                 lockedDoor.Unlock();
             }

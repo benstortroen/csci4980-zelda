@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9132204776807083844}
   - component: {fileID: 4432236377957951020}
   - component: {fileID: 3045534632244621215}
+  - component: {fileID: 3134540818138070307}
   m_Layer: 0
   m_Name: Gel
   m_TagString: enemy
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3242056397663906114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.63, y: 4.51, z: 0}
+  m_LocalPosition: {x: 36.63, y: 4.519, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -167,7 +168,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.5, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &4432236377957951020
 MonoBehaviour:
@@ -181,9 +182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625b57f036e90460abd9e7acbcf0d30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 0}
+  knockbackImmune: 0
+  knockbackSpeed: 4
+  knockbackDist: 3
   damage: 0.5
   speed: 2
+  minDistance: 1
+  maxDistance: 8
+  directions: 4
 --- !u!114 &3045534632244621215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +202,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e54fb40d3411451087fa381a9a33301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  max_hp: 2
-  rupee: {fileID: 8133875825057967034, guid: 0e83c798ea2604306a1568144f3dcdf1, type: 3}
-  heart: {fileID: 8133875825057967034, guid: 3c42f7f16fee14645b86d16ae1b7f5b0, type: 3}
+  max_hp: 0.5
+  flashRate: 0.2
+  iWindow: 0.4
+  drops: []
+  uniqueDrop: {fileID: 0}
+--- !u!95 &3134540818138070307
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3242056397663906114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72dd5447b77a94a9bbfc53339001ad39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

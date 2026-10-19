@@ -20,6 +20,7 @@ public class Arrow : MonoBehaviour, IItem, ITeleportable
     private void Start()
     {
         spawn_time = Time.time;
+        AudioManager.Instance.PlayWeaponArrow(transform.position);
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class Arrow : MonoBehaviour, IItem, ITeleportable
     {
         if (collision.CompareTag("enemy"))
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

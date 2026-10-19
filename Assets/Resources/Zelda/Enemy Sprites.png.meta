@@ -387,7 +387,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -396,6 +396,72 @@ TextureImporter:
       bones: []
       spriteID: f663f52875b1747ea8e2d0b570f09ee5
       internalID: -610533487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keese1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 201
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c7ded73b9d54ae990af92979ba9055
+      internalID: 2031368067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WallMaster1
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 201
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48f782c979c44bdf95682ab28a3a569
+      internalID: -2120918271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gel1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 201
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccdcde5258e0245589f75dca5f8c7d05
+      internalID: -1631493108
       vertices: []
       indices: 
       edges: []
@@ -416,6 +482,7 @@ TextureImporter:
     nameFileIdTable:
       Blade Trap: 2123907002
       Gel: 94717526
+      Gel1: -1631493108
       Goria: -1144592772
       Goria 2: 1383090162
       Goria 3: -1670198248
@@ -425,8 +492,10 @@ TextureImporter:
       Goria B 3: -928397210
       Goria B 4: -461150003
       Keese (Idle): 99637849
+      Keese1: 2031368067
       Stalfos: 5673006790503200954
       WallMaster: -610533487
+      WallMaster1: -2120918271
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

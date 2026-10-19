@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed36d26efdbc45308537d00a08876a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  sword_prefab: {fileID: 2113895964727007389, guid: 28f24622b278d4044814a02080e1f616, type: 3}

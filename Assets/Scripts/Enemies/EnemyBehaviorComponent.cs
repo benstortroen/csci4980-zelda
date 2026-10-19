@@ -16,16 +16,22 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
     protected float direction = 0;
     protected float distance = 0;
 
+    public bool knockbackImmune = false;
+
     [SerializeField] protected float knockbackSpeed = 4f;
     [SerializeField] protected float knockbackDist = 3f;
     protected Vector2 startPos;
 
     public float damage = 0.5f;
 
+
     protected Transform roomTransform;
 
 
     public float speed = 2f;
+    public float minDistance = 1;
+    public float maxDistance = 8;
+    public int directions = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -33,7 +39,7 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
         SnapToGrid();
         startPos = (Vector2)transform.position;
         roomTransform = transform.parent != null ? transform.parent : null;
-        player = PlayerController.player;
+        player = GameManager.player;
     }
 
     // Update is called once per frame
@@ -41,17 +47,16 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
     {
         if (!moving && PlayerInRoom())
         {
-            // Debug.Log("Moving");
             SnapToGrid();
             startPos = (Vector2)transform.position;
             float new_d;
             do
             {
-                new_d = UnityEngine.Random.Range(0, 8) * 90f;
+                new_d = UnityEngine.Random.Range(0, directions) * (360f / (float)directions);
             } while (new_d == -direction);
             direction = new_d;
 
-            distance = UnityEngine.Random.Range(1, 8);
+            distance = UnityEngine.Random.Range(minDistance, maxDistance);
             Move(direction, speed);
             moving = true;
         }
@@ -90,17 +95,14 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
             return;
         }
         // Debug.Log("Collision");
+        StopMovement();
         moving = false;
         GameObject other = collision.gameObject;
 
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !player.GetComponent<HealthComponent>().IsInvulnerable())
         {
             player.GetComponent<HealthComponent>().DealDamage(damage);
             player.GetComponent<PlayerController>().Knockback((Vector2)player.transform.position - (Vector2)transform.position);
-        }
-        else if (other.tag == "Wall")
-        {
-            // Debug.Log("Hit wall");
         }
     }
 
@@ -161,11 +163,14 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
 
     public void Knockback()
     {
-        startPos = transform.position;
-        distance = knockbackDist;
-        direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
-        Move(direction, knockbackSpeed);
-        moving = true;
+        if (!knockbackImmune)
+        {
+            startPos = transform.position;
+            distance = knockbackDist;
+            direction = Vector2.SignedAngle(Vector2.right, (Vector2)player.GetComponent<StateParameters>().GetFacingDirection());
+            Move(direction, knockbackSpeed);
+            moving = true;
+        }
     }
 
     public void TeleportTo(Transform t, Vector2 dir)

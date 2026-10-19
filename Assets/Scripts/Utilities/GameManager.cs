@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
-    void Start()
+    public static GameObject player;
+    void Awake()
     {
         // Implement Resolution and Control Standards
         Screen.SetResolution(1024, 960, false);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()

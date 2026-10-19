@@ -82,7 +82,13 @@ public class EvilBoomerangProjectile : MonoBehaviour, ITeleportable
             // start coroutine to set moving to true after 2 seconds
         }
 
+        else if (collision.CompareTag("Wall"))
+        {
+            tracking_target = true;
+            recieved = true;
+        }
     }
+
 
     public void TeleportTo(Transform pos, Vector2 dir)
     {

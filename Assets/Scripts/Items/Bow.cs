@@ -8,21 +8,27 @@ public class Bow : MonoBehaviour, IItem
 
     public string ItemName { get; set; }
 
-    public int ArrowCount = 10;
-
     [SerializeField] private GameObject arrow_prefab;
+    private Inventory inventory;
 
     public void Start()
     {
-        ItemName = "Bow (" + ArrowCount + ")";
+        ItemName = "Bow";
+        inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
     }
 
     public void UseItem(Vector3 position, Vector2 direction)
     {
-        if (ArrowCount > 0)
+        if (inventory.GetRupees() > 0 || CheatsController.godMode)
         {
             // enable item
             gameObject.SetActive(true);
+
+            // spend rupee on arrow use
+            if (!CheatsController.godMode)
+            {
+                inventory.SubtractRupees(1);
+            }
 
             // spawn arrow in facing direction
             Vector3 new_position = position + new Vector3(direction.x, direction.y, 0);
@@ -32,12 +38,6 @@ public class Bow : MonoBehaviour, IItem
 
             // rotate item to face dirction
             RotateItem(direction, arrow);
-            if (!CheatsController.godMode)
-            {
-                ArrowCount -= 1;
-                ItemName = "Bow (" + ArrowCount + ")";
-            }
-
         }
 
     }
@@ -65,10 +65,5 @@ public class Bow : MonoBehaviour, IItem
         }
 
         arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
-    }
-
-    public void AddArrows(int a)
-    {
-        ArrowCount += a;
     }
 }
