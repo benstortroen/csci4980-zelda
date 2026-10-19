@@ -9,7 +9,7 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
 
     private float lastTeleport = 0.0f;
 
-    public GameObject player;
+    protected GameObject player;
     protected Rigidbody2D rb;
 
     protected bool moving = false;
@@ -33,6 +33,7 @@ public class EnemyBehaviorComponent : MonoBehaviour, ITeleportable
         SnapToGrid();
         startPos = (Vector2)transform.position;
         roomTransform = transform.parent != null ? transform.parent : null;
+        player = PlayerController.player;
     }
 
     // Update is called once per frame

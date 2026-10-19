@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour, ITeleportable
 {
-
+    public static GameObject player;
     public bool recieved { get; set; }
     Rigidbody2D rb;
     StateParameters stateParameters;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, ITeleportable
     {
         rb = GetComponent<Rigidbody2D>();
         stateParameters = GetComponent<StateParameters>();
+        player = gameObject;
     }
 
     // Update is called once per frame
